@@ -1,22 +1,30 @@
-# RENDERING EVENTS ON A CALENDAR
+# RENDERING EVENTS 
 
-## The problem
 
-The problem consists in rendering events on a calendar, avoiding overlapping events to visually overlap.
-Your implementation should meet the two following constraints:
+# Sujet
 
-1. Every overlapping event should have the same width as every event it overlaps
-2. Every event should use the maximum width available while satisfying constraint 1
 
-A visual illustration of the problem is given below.
+Afficher des évenements sur un calendrier, en faisant en sorte que les évenements ne se chevauchent pas visuellement.
 
-Rendering events on a calendar means here: the relative position of events to the top of the screen and their height is a function of the height of the screen, the start/end time of the calendar, and the start time/duration of the events. For example: if the calendar goes from 00:00 to 24:00 and the screen is 2400px high, an event starting at 12:00 and lasting 1h would be positioned at 1200px of the top of the screen and have a height of 100px.
 
-Using the maximum width available here implies that the width of every group of mutually overlapping events equals the width of the window.
+Votre implémentation doit respecter les deux contraintes suivantes:
 
-## The input
+1. Tous les événements en chevauchement doivent avoir la même largeur que chaque événement avec lequel ils se chevauchent.
+2. Chaque événement doit utiliser la largeur maximale disponible tout en respectant la contrainte 1.
 
-The input (available below) is an array of events occurring on the same date. They have the following structure:
+Une illustration visuelle du problème est donnée ci-dessous.
+
+La position relative des événements se calcule en en fonction de la bordure supérieure de la fenêtre, l'heure et la durée des événements.
+Par exemple : si le calendrier va de 00:00 à 24:00 et que l'écran est de 2400px de haut, un événement commençant à 12h00 et durant 1h sera positionné à 1200px du haut de l'écran et aura une hauteur de 100px.
+
+Utiliser la largeur maximale disponible signifie qu'un groupe d'évenements en chevauchement sur une même plage horaire occupera la largeur de la fenêtre.
+
+
+
+## Données d'entrée
+
+L'input fournie dans ce repository est un tableau d'évenements ayant lieu le même jour (à des heures différentes)
+
 
 ```javascript
 {
@@ -26,33 +34,26 @@ The input (available below) is an array of events occurring on the same date. Th
 }
 ```
 
-## The output
+## Sortie
 
-Your code should render the events on a webpage in a container spanning the whole window.
-The top of the page represents 09:00 am. The bottom of the page represents 09:00 pm.
 
-The events should be represented as a `div` with a background color and a 1px border. The `div` should display the event's `id`.
+Votre code devrait afficher les événements sur une page Web dans un conteneur couvrant toute la fenêtre.
+Le haut de la page représente 09h00. Le bas de la page représente 21h00.
 
-Your implementation should be responsive (i.e. respond to window `resize` events).
+Les événements devraient être représentés sous forme de `div` avec une couleur de fond et une bordure de 1px. La `div` doit afficher l'identifiant de l'événement.
 
-## Dependencies
+Votre implémentation devrait être responsive (c'est-à-dire répondre aux événements `resize` de la fenêtre).
 
-You may use React, any lightweight templating library, or vanilla JS to do the rendering. You may use helper libraries such as lodash, etc. if you wish to. Javascript can be written in ES6.
 
-The easiest way to share your code is a [sandbox](https://codesandbox.io/). If you wish to go with React, you may share a project created with [create-react-app](https://github.com/facebook/create-react-app), preferably on github.
 
-## Browser support
+## Dépendences
 
-Your code should run in major modern browsers.
+Utiliser React (ou autre framework front équivalent). **Aucune autre librairie** qui ne soit pas purement utilitaire (ex: lodash) ou purement axée graphique / templating (ex: material UI)
 
-## Evaluation
 
-Our evaluation criteria are:
 
-* the correctness of the algorithm
-* the readability of the code (code structure, variables naming, comments,…)
 
-## Visual illustration of the problem
+## Illustration visuelle du problème
 
 **1 event**
 
@@ -70,7 +71,7 @@ Our evaluation criteria are:
 └─────┘
 ```
 
-**3 events where events 1, 2 and 3 overlap, but events 1 and 3 do not**
+**3 events tels que 1, 2 et 3 se chevauchent, mais pas 1 et 3**
 
 ```
 ┌─────┐
@@ -82,7 +83,7 @@ Our evaluation criteria are:
 └─────┘
 ```
 
-The configuration above meets all constraints. Be careful, something like below would not meet constraint 2 :
+**Cette configuration ci-dessus répond à toutes les contraintes. Attention, celle ci-dessous ne satisfait pas la constrainte #2 :**
 
 ```
 ┌───┐
@@ -94,7 +95,7 @@ The configuration above meets all constraints. Be careful, something like below 
           └───┘
 ```
 
-**If we combine cases 1, 2 and 3, you should end up with something like**
+**Ci dessous, on respecte toutes les contraintes**
 
 *The schema below assumes the width of event 1 equals the width of the window.*
 
@@ -118,7 +119,7 @@ The configuration above meets all constraints. Be careful, something like below 
 └─────┘
 ```
 
-**Satisfying both constraints**
+**Ci-dessous, les events 4 et 5 ne satisfont pas la contrainte #2**
 
 *The schema below assumes the width of event 1 equals the width of the window.*
 
@@ -141,4 +142,34 @@ The configuration above meets all constraints. Be careful, something like below 
 └───┘
 ```
 
-Events 2 et 3 satisfy both constraints. Events 4 and 5 do not.
+___
+
+# Note d'intention
+
+## Objectifs et Contexte
+
+> Motivation derrière le kata
+
+De plus en plus d’équipes de développement adoptent le paradigme **full-stack**, en demandant à tous leurs développeurs d’être en mesure de prendre en charge une tâche de front comme de back, selon les priorités du moment. 
+ 
+
+Les profils full-stack ayant un background orienté backend auront souvent plus de difficultés à s’emparer des concepts bas-niveau du front, qu’ils contournent en se cantonnant à des affichages très simplistes & des composants déjà existants. 
+
+ 
+L’objectif de ce kata : challenger la compréhension du front bas-niveau du candidat, en construisant **un composant complexe from-scratch**. 
+___
+
+## Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
+
+> Description précise & sans ambiguité sur les termes de ce qui est attendu
+
+**1. Fonctionnalité du projet**
+ * Le défilement des évènements `DOIT` commencer à l’ouverture de la page web et satisfaire autant que possible les contraintes du sujet
+ * Le projet `DOIT` pouvoir être ouvert sur n’importe quel navigateur 
+
+**2. Démonstration du frontend craftsmanship**
+* Le projet `NE DOIT PAS` utiliser d’imports de librairies autres que librairies nécessaires au fonctionnement du framework utilisé (ex React: “react”, “react-dom”, ...) 
+* L’affichage `DEVRAIT` être responsive 
+* Le projet `DEVRAIT` être implémenté en JS moderne [ES6](https://www.w3schools.com/js/js_es6.asp) 
+* Le projet `PEUT` être implémenté en Typescript 
+* Les informations `DEVRAIENT` être facilement lisibles et agréables à l’oeil 
