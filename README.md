@@ -66,7 +66,7 @@ Utiliser React (ou autre framework front équivalent). **Aucune autre librairie*
 **2 events**
 
 ```
-┌─────┐┌─────┐
+┌─────┐┌─────┐         // OK     
 |     |└─────┘
 └─────┘
 ```
@@ -75,7 +75,7 @@ Utiliser React (ou autre framework front équivalent). **Aucune autre librairie*
 
 ```
 ┌─────┐
-|  1  |┌─────┐
+|  1  |┌─────┐         // OK
 └─────┘|     |
        |  2  |
 ┌─────┐|     |
@@ -87,7 +87,7 @@ Utiliser React (ou autre framework front équivalent). **Aucune autre librairie*
 
 ```
 ┌───┐
-| 1 |┌───┐
+| 1 |┌───┐             // KO: la contrainte #2 n'est pas respectée
 └───┘|   |
      | 2 |
      |   |┌───┐
@@ -95,13 +95,12 @@ Utiliser React (ou autre framework front équivalent). **Aucune autre librairie*
           └───┘
 ```
 
-**Ci dessous, on respecte toutes les contraintes**
 
-*The schema below assumes the width of event 1 equals the width of the window.*
+**Dans les schémas ci-dessous, on assume que la fenêtre a la longueur de l'event 1**
 
 ```
 ┌────────────┐
-|     1      |
+|     1      |         // OK
 └────────────┘
 
 ┌─────┐┌─────┐
@@ -119,15 +118,14 @@ Utiliser React (ou autre framework front équivalent). **Aucune autre librairie*
 └─────┘
 ```
 
-**Ci-dessous, les events 4 et 5 ne satisfont pas la contrainte #2**
 
-*The schema below assumes the width of event 1 equals the width of the window.*
+
 
 
 ```
-┌────────────┐
+┌────────────┐ 
 |     1      |
-└────────────┘
+└────────────┘      // KO: la contrainte #2 n'est pas respectée
 
 ┌─────┐┌─────┐
 |     ||  3  |
