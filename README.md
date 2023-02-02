@@ -14,17 +14,17 @@ ___
 Les évenement peuvent recouvrir une même plage horaire. Auquel cas, on parle de _chevauchement_. Le _chevauchement_ de 2 évenements ne doit pas empêcher leur visibilité.
 
 
-Votre implémentation doit respecter les deux contraintes suivantes:
+Votre implémentation doit respecter les contraintes suivantes:
 
-`1. Tous les événements en chevauchement a la même largeur que chaque événement avec lequel ils se chevauchent.`
+`1. Si A et B sont deux évenements en chevauchement, alors Largeur(A) = Largeur(B).`
 
-`2. Chaque événement utilise la largeur maximale disponible, tout en respectant la contrainte #1`
+`2. LargeurMax = largeur de la fenêtre`
+
+`3. Si sur une plage horaire donnée, deux évenements A et B se chevauchent, alors Largeur(A) + Largeur(B) = LargeurMax`
 
 Une illustration visuelle du problème est donnée ci-dessous.
 
 
-
-Utiliser la largeur maximale disponible signifie qu'un groupe d'évenements en chevauchement sur une même plage horaire occupera la largeur de la fenêtre.
 
 ___
 
@@ -173,7 +173,7 @@ ___
 > Description précise & sans ambiguité sur les termes de ce qui est attendu
 
 **1. Fonctionnalité du projet**
- * L'affichage des évenements `DOIT` satisfaire les contraintes explicitées dans le sujet
+ * Le défilement des évènements `DOIT` commencer à l’ouverture de la page web et satisfaire autant que possible les contraintes du sujet
  * Le projet `DOIT` pouvoir être ouvert sur n’importe quel navigateur 
 
 **2. Démonstration du frontend craftsmanship**
