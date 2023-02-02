@@ -173,7 +173,7 @@ ___
 > Description précise & sans ambiguité sur les termes de ce qui est attendu
 
 **1. Fonctionnalité du projet**
- * Le défilement des évènements `DOIT` commencer à l’ouverture de la page web et satisfaire autant que possible les contraintes du sujet
+ * L'affichage des évenements `DOIT` satisfaire les contraintes explicitées dans le sujet
  * Le projet `DOIT` pouvoir être ouvert sur n’importe quel navigateur 
 
 **2. Démonstration du frontend craftsmanship**
