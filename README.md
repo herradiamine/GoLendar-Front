@@ -58,105 +58,10 @@ ___
 Utiliser React (ou autre framework front équivalent). **Aucune autre librairie** qui ne soit pas purement utilitaire (ex: lodash) ou purement axée graphique / templating (ex: material UI)
 
 
-___
-
-## Illustration visuelle du problème
-
-**1 event**
-
-```
-┌────────────┐
-|            |
-└────────────┘
-```
-
-**2 events**
-
-```
-┌─────┐┌─────┐         // OK     
-|     |└─────┘
-└─────┘
-```
-
-**3 events tels que 1, 2 et 3 se chevauchent, mais pas 1 et 3**
-
-```
-┌─────┐
-|  1  |┌─────┐         // OK
-└─────┘|     |
-       |  2  |
-┌─────┐|     |
-|  3  |└─────┘
-└─────┘
-```
-
-**Cette configuration ci-dessus répond à toutes les contraintes. Attention, celle ci-dessous ne satisfait pas la constrainte #2 :**
-
-```
-┌───┐
-| 1 |┌───┐             
-└───┘|   |
-     | 2 |
-     |   |┌───┐
-     └───┘| 3 |         // <------ KO: la contrainte #2 n'est pas respectée
-          └───┘
-```
-
-
-**Dans les schémas ci-dessous, on assume que la fenêtre a la largeur de l'event 1**
-
-```
-┌────────────┐
-|     1      |         // 👌
-└────────────┘
-
-┌─────┐┌─────┐
-|     ||  3  |
-|  2  |└─────┘
-|     |
-└─────┘
-
-┌─────┐
-|  4  |┌─────┐
-└─────┘|     |
-       |  5  |
-┌─────┐|     |
-|  6  |└─────┘
-└─────┘
-```
-
-
-
-
-
-```
-┌────────────┐ 
-|     1      |
-└────────────┘      
-
-┌─────┐┌─────┐
-|     ||  3  |
-|  2  |└─────┘
-|     |
-└─────┘
-
-┌───┐┌───┐
-|   || 5 |          // <----- KO: la contrainte #3 n'est pas respectée
-| 4 |└───┘
-|   |
-└───┘
-```
-
-___
-
 ![calendar version outlook](media-assets/calendar.png)
 _la version Microsoft Outlook ..._
 
-# Note d'intention
-
-## Objectifs et Contexte
-
-> Motivation derrière le kata
+# Motivation du kata & contexte
 
 De plus en plus d’équipes de développement adoptent le paradigme **full-stack**, en demandant à tous leurs développeurs d’être en mesure de prendre en charge une tâche de front comme de back, selon les priorités du moment. 
  
@@ -165,9 +70,8 @@ Les profils full-stack ayant un background orienté backend auront souvent plus 
 
  
 L’objectif de ce kata : challenger la compréhension du front bas-niveau du candidat, en construisant **un composant complexe from-scratch**. 
-___
 
-## Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
+# Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
 
 > Description précise & sans ambiguité sur les termes de ce qui est attendu
 
