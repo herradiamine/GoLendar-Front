@@ -1,5 +1,4 @@
-# 📅 RENDERING EVENTS 📅  @Planity
-
+# 📅 RENDERING EVENTS 📅 
 
 # Sujet
 
@@ -95,11 +94,11 @@ ___
 
 ```
 ┌───┐
-| 1 |┌───┐             // KO: la contrainte #2 n'est pas respectée
+| 1 |┌───┐             
 └───┘|   |
      | 2 |
      |   |┌───┐
-     └───┘| 3 |
+     └───┘| 3 |         // <------ KO: la contrainte #2 n'est pas respectée
           └───┘
 ```
 
@@ -108,7 +107,7 @@ ___
 
 ```
 ┌────────────┐
-|     1      |         // OK
+|     1      |         // 👌
 └────────────┘
 
 ┌─────┐┌─────┐
@@ -133,7 +132,7 @@ ___
 ```
 ┌────────────┐ 
 |     1      |
-└────────────┘      // KO: la contrainte #2 n'est pas respectée
+└────────────┘      
 
 ┌─────┐┌─────┐
 |     ||  3  |
@@ -142,7 +141,7 @@ ___
 └─────┘
 
 ┌───┐┌───┐
-|   || 5 |
+|   || 5 |          // <----- KO: la contrainte #3 n'est pas respectée
 | 4 |└───┘
 |   |
 └───┘
@@ -178,7 +177,7 @@ ___
 
 **2. Démonstration du frontend craftsmanship**
 * Le projet `NE DOIT PAS` utiliser d’imports de librairies autres que librairies nécessaires au fonctionnement du framework utilisé (ex React: “react”, “react-dom”, ...) 
-* L’affichage `DEVRAIT` être [responsive](https://www.usabilis.com/responsive-web-design-site-web-adaptatif/)
+* L’affichage `DOIT` être [responsive](https://www.usabilis.com/responsive-web-design-site-web-adaptatif/)
 * Le projet `DEVRAIT` être implémenté en JS moderne [ES6](https://www.w3schools.com/js/js_es6.asp) 
 * Le projet `PEUT` être implémenté en Typescript 
 * Les informations `DEVRAIENT` être facilement lisibles et agréables à l’oeil 
