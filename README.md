@@ -61,6 +61,10 @@ Utiliser React (ou autre framework front équivalent). **Aucune autre librairie*
 ![calendar version outlook](media-assets/calendar.png)
 _la version Microsoft Outlook ..._
 
+## ⚠️ Modalités de rendu ⚠️
+
+> **Pour le rendu, Poussez sur une nouvelle branche git et ouvrez une merge request vers Main**
+
 # Motivation du kata & contexte
 
 De plus en plus d’équipes de développement adoptent le paradigme **full-stack**, en demandant à tous leurs développeurs d’être en mesure de prendre en charge une tâche de front comme de back, selon les priorités du moment. 
