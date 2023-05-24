@@ -47,13 +47,14 @@ ___
 Votre code devrait afficher les événements sur une page Web dans un conteneur couvrant toute la fenêtre.
 Le haut de la page représente 09h00. Le bas de la page représente 21h00.
 
-Les événements devraient être représentés sous forme de `div` avec une couleur de fond et une bordure de 1px. La `div` doit afficher l'identifiant de l'événement.
+Les événements devraient être représentés sous forme de `div` avec une couleur de fond et une bordure de 1px.
+
+L'id de l'évenement doit être présent dans le contenu de la `div`, ainsi que dans son attribut `id` afin d'être validé par notre pipeline de test.
 
 Votre implémentation devrait être responsive (c'est-à-dire répondre aux événements `resize` de la fenêtre).
 
-
 ___
-## ⚠️ Dépendences ⚠️
+## ⚠️ Dépendances ⚠️
 
 Utiliser React (ou autre framework front équivalent). **Aucune autre librairie** qui ne soit pas purement utilitaire (ex: lodash) ou purement axée graphique / templating (ex: material UI)
 
@@ -81,7 +82,8 @@ L’objectif de ce kata : challenger la compréhension du front bas-niveau du ca
 
 **1. Fonctionnalité du projet**
  * Le défilement des évènements `DOIT` commencer à l’ouverture de la page web et satisfaire autant que possible les contraintes du sujet
- * Le projet `DOIT` pouvoir être ouvert sur n’importe quel navigateur 
+ * Le projet `DOIT` pouvoir être ouvert sur n’importe quel navigateur.
+ * L'id d'un évenement `DOIT` être présent dans le contenu de sa div, ainsi que dans son attribut `id`.
 
 **2. Démonstration du frontend craftsmanship**
 * Le projet `NE DOIT PAS` utiliser d’imports de librairies autres que librairies nécessaires au fonctionnement du framework utilisé (ex React: “react”, “react-dom”, ...) 
