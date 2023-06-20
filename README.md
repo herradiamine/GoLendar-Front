@@ -83,7 +83,7 @@ L’objectif de ce kata : challenger la compréhension du front bas-niveau du ca
 **1. Fonctionnalité du projet**
  * Le défilement des évènements `DOIT` commencer à l’ouverture de la page web et satisfaire autant que possible les contraintes du sujet
  * Le projet `DOIT` pouvoir être ouvert sur n’importe quel navigateur.
- * L'id d'un évenement `DOIT` être présent dans le contenu de sa div, ainsi que dans son attribut `id`.
+ * L'id d'un évènement `DOIT` être présent dans le contenu de sa div, ainsi que dans son attribut `id`.
 
 **2. Démonstration du frontend craftsmanship**
 * Le projet `NE DOIT PAS` utiliser d’imports de librairies autres que librairies nécessaires au fonctionnement du framework utilisé (ex React: “react”, “react-dom”, ...) 
