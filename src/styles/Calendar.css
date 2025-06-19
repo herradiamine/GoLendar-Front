@@ -32,6 +32,7 @@
   height: 20px;
   line-height: 20px;
   padding-right: 8px;
+  margin-top: 6px;
 }
 
 .calendar-hour-line {
@@ -161,6 +162,7 @@
     height: 20px;
     line-height: 20px;
     padding-right: 8px;
+    margin-top: 6px;
   }
   .calendar-container {
     height: 150vh;

@@ -35,7 +35,7 @@
 
 @media (max-width: 600px) {
   .calendar-event {
-    min-height: 18px;
+    min-height: 10px;
     font-size: 0.4rem;
   }
 } 
