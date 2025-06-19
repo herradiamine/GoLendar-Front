@@ -135,6 +135,10 @@ const CalendarView = () => {
     setSelectedDate(today);
   };
 
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
+
   const dateString = selectedDate.toLocaleDateString('fr-FR', {
     year: 'numeric', month: 'long', day: 'numeric'
   });
@@ -146,6 +150,8 @@ const CalendarView = () => {
         onPrevDay={handlePrevDay}
         onNextDay={handleNextDay}
         onToday={handleToday}
+        onDateSelect={handleDateSelect}
+        selectedDate={selectedDate}
       />
       <div className="calendar-outer">
         <HourColumn hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
