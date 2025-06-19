@@ -67,11 +67,10 @@ const App = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // Date du jour au format français long
-  const today = new Date();
-  const dateString = today.toLocaleDateString('fr-FR', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
   });
 
   useEffect(() => {
@@ -92,12 +91,35 @@ const App = () => {
       });
   }, []);
 
+  const handlePrevDay = () => {
+    setSelectedDate(prev => {
+      const d = new Date(prev);
+      d.setDate(d.getDate() - 1);
+      return d;
+    });
+  };
+  const handleNextDay = () => {
+    setSelectedDate(prev => {
+      const d = new Date(prev);
+      d.setDate(d.getDate() + 1);
+      return d;
+    });
+  };
+
+  const dateString = selectedDate.toLocaleDateString('fr-FR', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
   if (loading) return <div>Chargement des événements...</div>;
   if (error) return <div>Erreur : {error}</div>;
 
   return (
     <div>
-      <CalendarHeader date={dateString.charAt(0).toUpperCase() + dateString.slice(1)} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
+        <button onClick={handlePrevDay} aria-label="Jour précédent">◀</button>
+        <CalendarHeader date={dateString.charAt(0).toUpperCase() + dateString.slice(1)} />
+        <button onClick={handleNextDay} aria-label="Jour suivant">▶</button>
+      </div>
       <div className="calendar-outer">
         <HourColumn hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
         <CalendarArea events={events} hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />

@@ -16,7 +16,6 @@
   box-sizing: border-box;
   min-height: 20px;
   min-width: 0;
-  overflow: hidden;
 }
 
 .event-title,
@@ -24,7 +23,6 @@
   font-size: 0.60rem;
   line-height: 1;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
   display: inline;
