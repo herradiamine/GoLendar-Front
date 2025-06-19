@@ -11,7 +11,7 @@ const HourColumn = ({ hours, startHour, endHour }) => {
             className="calendar-hours-label"
             style={{ top: `calc(${top}% - 10px)` }}
           >
-            {h.toString().padStart(2, '0') + ':00'}
+            {h.toString().padStart(2, '0')}
           </div>
         );
       })}
