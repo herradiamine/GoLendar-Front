@@ -107,7 +107,7 @@ const App = () => {
   };
 
   const dateString = selectedDate.toLocaleDateString('fr-FR', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    year: 'numeric', month: 'long', day: 'numeric'
   });
 
   if (loading) return <div>Chargement des événements...</div>;

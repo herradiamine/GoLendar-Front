@@ -157,6 +157,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  width: 150px;
 }
 
 .calendar-header-chevron {
@@ -176,6 +177,7 @@
   }
   .calendar-header-date {
     font-size: 1em;
+    width: 150px;
   }
 }
 
