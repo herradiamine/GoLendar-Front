@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.calendar-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: #b40000;
+  text-align: center;
+  padding: 20px;
+}

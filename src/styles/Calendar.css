@@ -46,7 +46,9 @@
 
 .calendar-container {
   position: relative;
-  flex: 1 1 0;
+  flex-grow: 1;
+  height: 100%;
+  overflow: hidden;
   background: #fafbfc;
   overflow-y: auto;
   font-family: sans-serif;
@@ -214,4 +216,16 @@
     height: 150vh;
     max-height: 200vh;
   }
+}
+
+.calendar-message {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: #b40000;
+  text-align: center;
+  padding: 20px;
+  z-index: 1000;
 } 

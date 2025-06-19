@@ -7,7 +7,7 @@ function minutesToTime(minutes) {
   return `${h}:${m}`;
 }
 
-const Event = ({ id, top, height, style = {}, start, duration, children }) => {
+const Event = ({ id, top, height, style = {}, titre="", start, duration, children }) => {
   // Calcul de l'heure de début et de fin
   let startMin = 0;
   if (start) {
@@ -22,7 +22,7 @@ const Event = ({ id, top, height, style = {}, start, duration, children }) => {
     <div
       id={String(id)}
       className="calendar-event"
-      title={`Événement #${id} · ${startStr} - ${endStr}`}
+      title={`#${id} ${titre} · ${startStr} - ${endStr}`}
       style={{
         position: 'absolute',
         left: 0,
@@ -32,7 +32,7 @@ const Event = ({ id, top, height, style = {}, start, duration, children }) => {
         ...style,
       }}
     >
-      <span className="event-title">Événement #{id} · {startStr} - {endStr}</span>
+      <span className="event-title">#{id} {titre} · {startStr} - {endStr}</span>
     </div>
   );
 };

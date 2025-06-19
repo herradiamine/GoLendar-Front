@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "titre": "Toto",
     "start": "17:00",
     "duration": 60
   },

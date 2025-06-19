@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import CalendarHeader from './components/CalendarHeader';
 import HourColumn from './components/HourColumn';
 import CalendarArea from './components/CalendarArea';
@@ -9,6 +10,20 @@ import './styles/App.css';
 function timeToMinutes(time) {
   const [hours, minutes] = time.split(':').map(Number);
   return hours * 60 + minutes;
+}
+
+// Fonction pour formater la date au format JJ-MM-YYYY
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
+// Fonction pour parser une date au format JJ-MM-YYYY
+function parseDate(dateStr) {
+  const [day, month, year] = dateStr.split('-').map(Number);
+  return new Date(year, month - 1, day);
 }
 
 const START_HOUR = 0;
@@ -63,33 +78,40 @@ function computeOverlaps(events) {
   return result;
 }
 
-const App = () => {
+const CalendarView = () => {
+  const { date } = useParams();
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return today;
+    return date ? parseDate(date) : new Date();
   });
 
   useEffect(() => {
-    fetch('input.json')
+    const formattedDate = formatDate(selectedDate);
+    if (formattedDate !== date) {
+      navigate(`/${formattedDate}`);
+    }
+
+    fetch(`/${formattedDate}.json`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Erreur lors du chargement des événements');
+          throw new Error('Aucun événement trouvé pour cette date');
         }
         return response.json();
       })
       .then((data) => {
         setEvents(computeOverlaps(data));
         setLoading(false);
+        setError(null);
       })
       .catch((err) => {
         setError(err.message);
+        setEvents([]);
         setLoading(false);
       });
-  }, []);
+  }, [selectedDate, date, navigate]);
 
   const handlePrevDay = () => {
     setSelectedDate(prev => {
@@ -98,6 +120,7 @@ const App = () => {
       return d;
     });
   };
+
   const handleNextDay = () => {
     setSelectedDate(prev => {
       const d = new Date(prev);
@@ -106,12 +129,15 @@ const App = () => {
     });
   };
 
+  const handleToday = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    setSelectedDate(today);
+  };
+
   const dateString = selectedDate.toLocaleDateString('fr-FR', {
     year: 'numeric', month: 'long', day: 'numeric'
   });
-
-  if (loading) return <div>Chargement des événements...</div>;
-  if (error) return <div>Erreur : {error}</div>;
 
   return (
     <div>
@@ -119,12 +145,29 @@ const App = () => {
         date={dateString.charAt(0).toUpperCase() + dateString.slice(1)}
         onPrevDay={handlePrevDay}
         onNextDay={handleNextDay}
+        onToday={handleToday}
       />
       <div className="calendar-outer">
         <HourColumn hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
-        <CalendarArea events={events} hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
+        <CalendarArea 
+          events={events} 
+          hours={HOURS} 
+          startHour={START_HOUR} 
+          endHour={END_HOUR}
+          loading={loading}
+          error={error}
+        />
       </div>
     </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/:date" element={<CalendarView />} />
+      <Route path="/" element={<Navigate to={`/${formatDate(new Date())}`} replace />} />
+    </Routes>
   );
 };
 
