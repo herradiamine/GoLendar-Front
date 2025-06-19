@@ -14,18 +14,18 @@
   margin: 2px;
   position: absolute;
   box-sizing: border-box;
-  min-height: 20px;
   min-width: 0;
 }
 
 .event-title,
 .event-time {
   font-size: 0.60rem;
-  line-height: 1;
+  line-height: 2;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-weight: bold;
   display: inline;
+  overflow: auto;
 }
 
 .event-time {

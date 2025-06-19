@@ -115,11 +115,11 @@ const App = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
-        <button onClick={handlePrevDay} aria-label="Jour précédent">◀</button>
-        <CalendarHeader date={dateString.charAt(0).toUpperCase() + dateString.slice(1)} />
-        <button onClick={handleNextDay} aria-label="Jour suivant">▶</button>
-      </div>
+      <CalendarHeader
+        date={dateString.charAt(0).toUpperCase() + dateString.slice(1)}
+        onPrevDay={handlePrevDay}
+        onNextDay={handleNextDay}
+      />
       <div className="calendar-outer">
         <HourColumn hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
         <CalendarArea events={events} hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
