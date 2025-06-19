@@ -41,10 +41,11 @@
   position: relative;
   flex: 1 1 0;
   background: #fafbfc;
-  overflow: hidden;
+  overflow-y: auto;
   font-family: sans-serif;
   min-width: 0;
-  height: 100vh;
+  height: 90vh;
+  max-height: 100vh;
 }
 
 .calendar-event {

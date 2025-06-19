@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CalendarHeader from './components/CalendarHeader';
 import HourColumn from './components/HourColumn';
 import CalendarArea from './components/CalendarArea';
-import './styles/calendar.css';
+import './styles/Calendar.css';
 import './styles/App.css';
 
 // Fonction utilitaire pour convertir une heure ("HH:MM") en minutes depuis minuit

@@ -22,6 +22,7 @@ const Event = ({ id, top, height, style = {}, start, duration, children }) => {
     <div
       id={String(id)}
       className="calendar-event"
+      title={`Événement #${id} · ${startStr} - ${endStr}`}
       style={{
         position: 'absolute',
         left: 0,
@@ -31,8 +32,7 @@ const Event = ({ id, top, height, style = {}, start, duration, children }) => {
         ...style,
       }}
     >
-      <div className="event-title">Événement #{id}</div>
-      <div className="event-time">{startStr} - {endStr}</div>
+      <span className="event-title">Événement #{id} · {startStr} - {endStr}</span>
     </div>
   );
 };
