@@ -29,9 +29,10 @@
   font-size: 13px;
   color: #607d8b;
   height: 20px;
-  border-top: 1px solid #e0e0e0;
   line-height: 20px;
-  padding-right: 8px;
+  border-top: 1px solid #e0e0e0;
+  margin: 10px 0 0 0;
+  background: transparent;
 }
 
 .calendar-hour-line {
@@ -159,10 +160,10 @@
     font-size: 13px;
     color: #607d8b;
     height: 20px;
-    border-top: 1px solid #e0e0e0;
     line-height: 20px;
-    padding-right: 8px;
-    margin-top: 10px;
+    border-top: 1px solid #e0e0e0;
+    margin: 10px 0 0 0;
+    background: transparent;
   }
   .calendar-container {
     height: 150vh;
