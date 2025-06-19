@@ -1,0 +1,10 @@
+.event-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.event-time {
+  font-size: 13px;
+  color: #1976d2;
+} 

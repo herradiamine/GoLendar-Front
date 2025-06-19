@@ -1,0 +1,121 @@
+.calendar-outer {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f6fa;
+}
+
+.calendar-hours {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  position: relative;
+  background: #f4f6fa;
+  border-right: 1px solid #e0e0e0;
+  z-index: 2;
+  user-select: none;
+  font-family: monospace;
+}
+
+.calendar-hours-label {
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  font-size: 13px;
+  color: #607d8b;
+  height: 20px;
+  line-height: 20px;
+  padding-right: 8px;
+}
+
+.calendar-hour-line {
+  pointer-events: none;
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #e0e0e0;
+}
+
+.calendar-container {
+  position: relative;
+  flex: 1 1 0;
+  background: #fafbfc;
+  overflow: hidden;
+  font-family: sans-serif;
+  min-width: 0;
+  height: 100vh;
+}
+
+.calendar-event {
+  z-index: 9999;
+  background: #90caf9;
+  border: 1px solid #1976d2;
+  border-radius: 6px;
+  color: #0d2236;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: box-shadow 0.2s;
+  margin: 2px;
+  position: absolute;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+
+.calendar-event:hover {
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+  background: #64b5f6;
+  margin: 2px;
+}
+
+.calendar-header {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1rem 0 1rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  color: #1976d2;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+@media (max-width: 600px) {
+  .calendar-outer {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .calendar-hours {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: 40px;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: static;
+    background: #f4f6fa;
+    overflow-x: auto;
+  }
+  .calendar-hours-label {
+    position: static;
+    width: auto;
+    padding: 0 4px;
+    font-size: 11px;
+    color: #607d8b;
+    height: auto;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .calendar-container {
+    height: calc(100vh - 40px);
+  }
+} 
