@@ -2,7 +2,7 @@
 
 .event-title,
 .event-time {
-  font-size: 0.60rem;
+  font-size: 0.70rem;
   line-height: 2;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -15,7 +15,3 @@
   color: #1976d2;
   margin-left: 4px;
 }
-
-@media (max-width: 600px) {
-  /* rien pour .calendar-event ici */
-} 
