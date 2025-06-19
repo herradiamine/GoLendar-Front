@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Event from './components/Event';
+import CalendarHeader from './components/CalendarHeader';
+import HourColumn from './components/HourColumn';
+import CalendarArea from './components/CalendarArea';
 import './styles/calendar.css';
 import './styles/App.css';
 
@@ -11,7 +13,6 @@ function timeToMinutes(time) {
 
 const START_HOUR = 0;
 const END_HOUR = 23;
-const TOTAL_MINUTES = (END_HOUR - START_HOUR + 1) * 60;
 const HOURS = Array.from({ length: END_HOUR - START_HOUR + 1 }, (_, i) => START_HOUR + i);
 
 // Détection des groupes de chevauchement et attribution des colonnes
@@ -96,59 +97,10 @@ const App = () => {
 
   return (
     <div>
-      <div className="calendar-header">
-        {dateString.charAt(0).toUpperCase() + dateString.slice(1)}
-      </div>
+      <CalendarHeader date={dateString.charAt(0).toUpperCase() + dateString.slice(1)} />
       <div className="calendar-outer">
-        {/* Colonne des heures */}
-        <div className="calendar-hours">
-          {HOURS.map((h, idx) => {
-            const top = ((h - START_HOUR) / (END_HOUR - START_HOUR + 1)) * 100;
-            return (
-              <div
-                key={h}
-                className="calendar-hours-label"
-                style={{ top: `calc(${top}% - 10px)` }}
-              >
-                {h.toString().padStart(2, '0') + ':00'}
-              </div>
-            );
-          })}
-        </div>
-        {/* Zone calendrier principale */}
-        <div className="calendar-container">
-          {/* Lignes horaires */}
-          {HOURS.map((h, idx) => {
-            if (idx === 0) return null;
-            const top = ((h - START_HOUR) / (END_HOUR - START_HOUR + 1)) * 100;
-            return (
-              <div
-                key={h}
-                className="calendar-hour-line"
-                style={{ top: `${top}%` }}
-              />
-            );
-          })}
-          {/* Événements */}
-          {events.map((event) => {
-            const minutesSinceStart = event.startMin - START_HOUR * 60;
-            const top = (minutesSinceStart / TOTAL_MINUTES) * 100;
-            const height = (event.duration / TOTAL_MINUTES) * 100;
-            const width = 100 / event.clusterSize;
-            const left = event.column * width;
-            return (
-              <Event
-                key={event.id}
-                id={event.id}
-                top={`${top}%`}
-                height={`${height}%`}
-                start={event.start}
-                duration={event.duration}
-                style={{ left: `${left}%`, width: `calc(${width}% - 8px)` }}
-              />
-            );
-          })}
-        </div>
+        <HourColumn hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
+        <CalendarArea events={events} hours={HOURS} startHour={START_HOUR} endHour={END_HOUR} />
       </div>
     </div>
   );
