@@ -32,7 +32,7 @@ const Event = ({ id, top, height, style = {}, titre="", start, duration, childre
         ...style,
       }}
     >
-      <span className="event-title">{id} {titre} · {startStr} - {endStr}</span>
+      <span className="event-title">{id}</span>
     </div>
   );
 };

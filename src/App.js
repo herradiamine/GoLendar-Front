@@ -172,7 +172,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/:date" element={<CalendarView />} />
-      <Route path="/" element={<Navigate to={`/${formatDate(new Date())}`} replace />} />
+      <Route path="/" element={<Navigate to={`/19-06-2025`} replace />} />
     </Routes>
   );
 };
