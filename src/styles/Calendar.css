@@ -61,7 +61,7 @@
 .calendar-event {
   z-index: 9999;
   background: rgba(180,0,0,0.15);
-  border-left: 6px solid #b40000;
+  border: 1px solid #b40000;
   border-radius: 3px;
   color: #0d2236;
   display: flex;
