@@ -107,7 +107,7 @@
   flex: 1 1 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
 }
 
@@ -116,10 +116,10 @@
 }
 
 .calendar-today-btn {
-  background: #f5f5f5;
-  border: 1px solid #b40000;
-  border-radius: 6px;
-  color: #b40000;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  color: #646464;
   font-weight: 500;
   padding: 7px 18px;
   font-size: 1em;

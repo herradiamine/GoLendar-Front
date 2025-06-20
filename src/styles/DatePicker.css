@@ -1,14 +1,14 @@
 .date-picker-overlay {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 65px;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 100px; /* Adjust as needed */
+  padding-top: 56px; /* Place le datepicker juste sous le header (ajuster selon la hauteur du header) */
   z-index: 10000;
 }
 
