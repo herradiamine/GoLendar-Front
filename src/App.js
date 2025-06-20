@@ -26,8 +26,8 @@ function parseDate(dateStr) {
   return new Date(year, month - 1, day);
 }
 
-const START_HOUR = 0;
-const END_HOUR = 23;
+const START_HOUR = 9;
+const END_HOUR = 21;
 const HOURS = Array.from({ length: END_HOUR - START_HOUR + 1 }, (_, i) => START_HOUR + i);
 
 // Détection des groupes de chevauchement et attribution des colonnes
