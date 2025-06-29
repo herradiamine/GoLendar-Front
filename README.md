@@ -1,4 +1,4 @@
-# 📅 RENDERING EVENTS 📅 
+# 📅 GoLendar-Front 📅 
 
 # Sujet
 
@@ -68,26 +68,26 @@ _la version Microsoft Outlook ..._
 
 # Motivation du kata & contexte
 
-De plus en plus d’équipes de développement adoptent le paradigme **full-stack**, en demandant à tous leurs développeurs d’être en mesure de prendre en charge une tâche de front comme de back, selon les priorités du moment. 
+De plus en plus d'équipes de développement adoptent le paradigme **full-stack**, en demandant à tous leurs développeurs d'être en mesure de prendre en charge une tâche de front comme de back, selon les priorités du moment. 
  
 
-Les profils full-stack ayant un background orienté backend auront souvent plus de difficultés à s’emparer des concepts bas-niveau du front, qu’ils contournent en se cantonnant à des affichages très simplistes & des composants déjà existants. 
+Les profils full-stack ayant un background orienté backend auront souvent plus de difficultés à s'emparer des concepts bas-niveau du front, qu'ils contournent en se cantonnant à des affichages très simplistes & des composants déjà existants. 
 
  
-L’objectif de ce kata : challenger la compréhension du front bas-niveau du candidat, en construisant **un composant complexe from-scratch**. 
+L'objectif de ce kata : challenger la compréhension du front bas-niveau du candidat, en construisant **un composant complexe from-scratch**. 
 
 # Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
 
 > Description précise & sans ambiguité sur les termes de ce qui est attendu
 
 **1. Fonctionnalité du projet**
- * Le défilement des évènements `DOIT` commencer à l’ouverture de la page web et satisfaire autant que possible les contraintes du sujet
- * Le projet `DOIT` pouvoir être ouvert sur n’importe quel navigateur.
+ * Le défilement des évènements `DOIT` commencer à l'ouverture de la page web et satisfaire autant que possible les contraintes du sujet
+ * Le projet `DOIT` pouvoir être ouvert sur n'importe quel navigateur.
  * L'id d'un évènement `DOIT` être présent dans le contenu de sa div, ainsi que dans son attribut `id`.
 
 **2. Démonstration du frontend craftsmanship**
-* Le projet `NE DOIT PAS` utiliser d’imports de librairies autres que librairies nécessaires au fonctionnement du framework utilisé (ex React: “react”, “react-dom”, ...) 
-* L’affichage `DOIT` être [responsive](https://www.usabilis.com/responsive-web-design-site-web-adaptatif/)
+* Le projet `NE DOIT PAS` utiliser d'imports de librairies autres que librairies nécessaires au fonctionnement du framework utilisé (ex React: "react", "react-dom", ...) 
+* L'affichage `DOIT` être [responsive](https://www.usabilis.com/responsive-web-design-site-web-adaptatif/)
 * Le projet `DEVRAIT` être implémenté en JS moderne [ES6](https://www.w3schools.com/js/js_es6.asp) 
 * Le projet `PEUT` être implémenté en Typescript 
-* Les informations `DEVRAIENT` être facilement lisibles et agréables à l’oeil 
+* Les informations `DEVRAIENT` être facilement lisibles et agréables à l'oeil 
