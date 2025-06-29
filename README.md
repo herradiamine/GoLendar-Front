@@ -1,93 +1,80 @@
 # 📅 GoLendar-Front 📅 
 
-# Sujet
+Un composant de calendrier React moderne et responsive pour afficher des événements avec gestion intelligente des chevauchements.
 
+## 🎯 Objectif
 
-## L'objectif: Afficher des évenements sur un calendrier. 
+Afficher des événements sur un calendrier avec un positionnement précis basé sur l'heure et la durée. La position relative des événements se calcule en fonction de la bordure supérieure de la fenêtre, l'heure et la durée des événements.
 
-La position relative des événements se calcule en en fonction de la bordure supérieure de la fenêtre, l'heure et la durée des événements.
 Par exemple : si le calendrier va de 00:00 à 24:00 et que l'écran est de 2400px de haut, un événement commençant à 12h00 et durant 1h sera positionné à 1200px du haut de l'écran et aura une hauteur de 100px.
 
-___
-## Chevauchement d'évenements
-Les évenement peuvent recouvrir une même plage horaire. Auquel cas, on parle de _chevauchement_. Le _chevauchement_ de 2 évenements ne doit pas empêcher leur visibilité.
+## 🔄 Gestion des Chevauchements
 
+Les événements peuvent recouvrir une même plage horaire. Auquel cas, on parle de _chevauchement_. Le _chevauchement_ de 2 événements ne doit pas empêcher leur visibilité.
 
-Votre implémentation doit respecter les contraintes suivantes:
+L'implémentation respecte les contraintes suivantes:
 
-`1. Si A et B sont deux évenements en chevauchement, alors Largeur(A) = Largeur(B).`
+1. **Si A et B sont deux événements en chevauchement, alors Largeur(A) = Largeur(B).**
+2. **LargeurMax = largeur de la fenêtre**
+3. **Si sur une plage horaire donnée, deux événements A et B se chevauchent, alors Largeur(A) + Largeur(B) = LargeurMax**
 
-`2. LargeurMax = largeur de la fenêtre`
+## 📥 Format des Données
 
-`3. Si sur une plage horaire donnée, deux évenements A et B se chevauchent, alors Largeur(A) + Largeur(B) = LargeurMax`
-
-Une illustration visuelle du problème est donnée ci-dessous.
-
-
-
-___
-
-## Input
-
-L'input fournie dans ce repository est un tableau d'évenements ayant lieu le même jour (à des heures différentes)
-
+L'input est un tableau d'événements ayant lieu le même jour (à des heures différentes) :
 
 ```javascript
 {
   id: 1,
-  start: '15:00', // The event starts at 03:00 pm
-  duration: 90 // The duration is expressed in minutes
+  start: '15:00', // L'événement commence à 15h00
+  duration: 90    // La durée est exprimée en minutes
 }
 ```
-___
 
-## Output
+## 🚀 Installation et Utilisation
 
+```bash
+# Cloner le repository
+git clone https://github.com/herradiamine/golendar-front.git
 
-Votre code devrait afficher les événements sur une page Web dans un conteneur couvrant toute la fenêtre.
-Le haut de la page représente 09h00. Le bas de la page représente 21h00.
+# Installer les dépendances
+npm install
 
-Les événements devraient être représentés sous forme de `div` avec une couleur de fond et une bordure de 1px.
+# Lancer l'application en mode développement
+npm start
 
-L'id de l'évenement doit être présent dans le contenu de la `div`, ainsi que dans son attribut `id` afin d'être validé par notre pipeline de test.
+# Construire pour la production
+npm run build
+```
 
-Votre implémentation devrait être responsive (c'est-à-dire répondre aux événements `resize` de la fenêtre).
+## 🎨 Fonctionnalités
 
-___
-## ⚠️ Dépendances ⚠️
+- **Affichage responsive** : Le calendrier s'adapte à la taille de la fenêtre
+- **Gestion intelligente des chevauchements** : Les événements qui se chevauchent sont automatiquement redimensionnés
+- **Positionnement précis** : Chaque événement est positionné exactement selon son heure de début et sa durée
+- **Interface moderne** : Design épuré et agréable à utiliser
 
-Utiliser React (ou autre framework front équivalent). **Aucune autre librairie** qui ne soit pas purement utilitaire (ex: lodash) ou purement axée graphique / templating (ex: material UI)
+## 🛠️ Technologies Utilisées
 
+- **React 18** - Framework principal
+- **CSS moderne** - Styles personnalisés sans dépendances externes
+- **JavaScript ES6+** - Code moderne et maintenable
 
-![calendar version outlook](media-assets/calendar.png)
-_la version Microsoft Outlook ..._
+## 📱 Responsive Design
 
-## ⚠️ Modalités de rendu ⚠️
+Le composant est entièrement responsive et répond aux événements `resize` de la fenêtre pour s'adapter automatiquement aux différentes tailles d'écran.
 
-> **Pour le rendu, Poussez sur une nouvelle branche git, ouvrez une merge request vers Main, et notifiez votre interlocuteur par message que le kata est fini.
+## 🎯 Spécifications Techniques
 
-# Motivation du kata & contexte
+- **Plage horaire** : 09h00 à 21h00
+- **Format des événements** : `div` avec couleur de fond et bordure de 1px
+- **Identifiants** : L'id de l'événement est présent dans le contenu de la div et dans son attribut `id`
+- **Compatibilité** : Fonctionne sur tous les navigateurs modernes
 
-De plus en plus d'équipes de développement adoptent le paradigme **full-stack**, en demandant à tous leurs développeurs d'être en mesure de prendre en charge une tâche de front comme de back, selon les priorités du moment. 
- 
+## 📝 Auteur
 
-Les profils full-stack ayant un background orienté backend auront souvent plus de difficultés à s'emparer des concepts bas-niveau du front, qu'ils contournent en se cantonnant à des affichages très simplistes & des composants déjà existants. 
+**Amine Herradi** - [GitHub](https://github.com/herradiamine)
 
- 
-L'objectif de ce kata : challenger la compréhension du front bas-niveau du candidat, en construisant **un composant complexe from-scratch**. 
+---
 
-# Specification [RFC2119](https://microformats.org/wiki/rfc-2119-fr) du kata
+*Ce projet a été développé dans le cadre d'un exercice technique pour démontrer la maîtrise des concepts front-end bas-niveau et la capacité à construire des composants complexes from-scratch.*
 
-> Description précise & sans ambiguité sur les termes de ce qui est attendu
-
-**1. Fonctionnalité du projet**
- * Le défilement des évènements `DOIT` commencer à l'ouverture de la page web et satisfaire autant que possible les contraintes du sujet
- * Le projet `DOIT` pouvoir être ouvert sur n'importe quel navigateur.
- * L'id d'un évènement `DOIT` être présent dans le contenu de sa div, ainsi que dans son attribut `id`.
-
-**2. Démonstration du frontend craftsmanship**
-* Le projet `NE DOIT PAS` utiliser d'imports de librairies autres que librairies nécessaires au fonctionnement du framework utilisé (ex React: "react", "react-dom", ...) 
-* L'affichage `DOIT` être [responsive](https://www.usabilis.com/responsive-web-design-site-web-adaptatif/)
-* Le projet `DEVRAIT` être implémenté en JS moderne [ES6](https://www.w3schools.com/js/js_es6.asp) 
-* Le projet `PEUT` être implémenté en Typescript 
-* Les informations `DEVRAIENT` être facilement lisibles et agréables à l'oeil 
