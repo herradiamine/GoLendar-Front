@@ -30,8 +30,8 @@ export function useAuth() {
     setError(null);
     try {
       const data = await apiLogin(email, password);
-      setToken(data.token); // suppose que la réponse contient { token, user }
-      localStorage.setItem('token', data.token);
+      setToken(data.token);
+      localStorage.setItem('token', data.data.session_token);
       setUser(data.user);
       return data;
     } catch (e) {
