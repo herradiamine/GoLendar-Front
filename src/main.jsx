@@ -10,6 +10,7 @@ import App from './App.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import LogoutPage from './pages/LogoutPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
 function AuthRequired() {
   const { token, loading } = useAuth();
@@ -22,10 +23,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="*" element={<NotFoundPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route element={<AuthRequired />}>
+        <Route path='/' element={<AuthRequired />}>
           <Route path="/home" element={<App />} />
         </Route>
       </Routes>
