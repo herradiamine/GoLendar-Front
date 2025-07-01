@@ -4,9 +4,9 @@ import * as React from "react"
 import {
   BookOpen,
   Bot,
-  Command,
   Frame,
   LifeBuoy,
+  LucidePlus,
   Map,
   PieChart,
   Send,
@@ -14,6 +14,7 @@ import {
   SquareTerminal,
 } from "lucide-react"
 
+import Logo from "../../public/logo.svg"
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
@@ -30,27 +31,47 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Amine Herradi",
+    email: "amineherradi@gmail.com",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
     {
-      title: "Playground",
+      title: "Mes agendas",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Personnel",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Professionnel",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Famille",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Créer",
+      url: "#",
+      icon: LucidePlus,
+      isActive: true,
+      items: [
+        {
+          title: "Créer une tâche",
+          url: "#",
+        },
+        {
+          title: "Créer un événement",
+          url: "#",
+        },
+        {
+          title: "Créer une réunion",
           url: "#",
         },
       ],
@@ -161,11 +182,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Command className="size-4" />
+                  <img src="logo.svg" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                  <span className="truncate font-medium">Golendar</span>
+                  <span className="truncate text-xs">Gestion de calendrier</span>
                 </div>
               </a>
             </SidebarMenuButton>
