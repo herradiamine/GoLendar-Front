@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Force tous les composants à être côté client
+  reactStrictMode: true,
 };
 
 export default nextConfig;

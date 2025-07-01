@@ -1,8 +1,9 @@
-import Dashboard from "@/app/dashboard/page"
-import { LoginForm } from "@/components/login-form";
+"use client"
+
+import { AppRouter } from "@/components/app-router"
 
 export default function App() {
   return (
-    <Dashboard />
+    <AppRouter />
   );
 }
