@@ -8,16 +8,16 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setSuccess(false);
+    setSuccess(null);
     setLoading(true);
     try {
-      await registerUser({ lastname, firstname, email, password });
-      setSuccess(true);
+      const data = await registerUser({ lastname, firstname, email, password });
+      setSuccess(data.message);
       setLastname('');
       setFirstname('');
       setEmail('');
@@ -71,7 +71,7 @@ export default function RegisterForm() {
         {loading ? "Inscription..." : "S'inscrire"}
       </button>
       {error && <div>Erreur : {error}</div>}
-      {success && <div>Inscription réussie !</div>}
+      {success && <div>{success}</div>}
     </form>
   );
 } 
