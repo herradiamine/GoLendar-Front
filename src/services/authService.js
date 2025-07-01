@@ -1,4 +1,5 @@
 import { ERROR_MESSAGES } from '../constants/messages';
+import { handleApiResponse } from '../utils/apiResponse';
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Connexion utilisateur
@@ -12,12 +13,9 @@ export async function login(email, password) {
     });
     data = await response.json();
   } catch (e) {
-    throw new Error(ERROR_MESSAGES.technical);
+    return { data: null, message: null, error: ERROR_MESSAGES.technical };
   }
-  if (!data.success) {
-    throw new Error(data.error || '');
-  }
-  return data;
+  return handleApiResponse(data);
 }
 
 // Rafraîchissement de token
@@ -31,30 +29,25 @@ export async function refreshToken(refresh_token) {
     });
     data = await response.json();
   } catch (e) {
-    throw new Error(ERROR_MESSAGES.technical);
+    return { data: null, message: null, error: ERROR_MESSAGES.technical };
   }
-  if (!data.success) {
-    throw new Error(data.error || '');
-  }
-  return data;
+  return handleApiResponse(data);
 }
 
 // Déconnexion utilisateur
 export async function logout(token) {
   let data;
   try {
+    console.log(token)
     const response = await fetch(`${BASE_URL}/auth/logout`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${token}` }
     });
     data = await response.json();
   } catch (e) {
-    throw new Error(ERROR_MESSAGES.technical);
+    return { data: null, message: null, error: ERROR_MESSAGES.technical };
   }
-  if (!data.success) {
-    throw new Error(data.error || '');
-  }
-  return data;
+  return handleApiResponse(data);
 }
 
 // Récupération du profil utilisateur connecté
@@ -67,10 +60,7 @@ export async function getProfile(token) {
     });
     data = await response.json();
   } catch (e) {
-    throw new Error(ERROR_MESSAGES.technical);
+    return { data: null, message: null, error: ERROR_MESSAGES.technical };
   }
-  if (!data.success) {
-    throw new Error(data.error || '');
-  }
-  return data;
+  return handleApiResponse(data);
 } 

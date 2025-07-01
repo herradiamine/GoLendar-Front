@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth.js'
 import { AuthContext } from './contexts/authContext.js'
@@ -11,11 +11,11 @@ import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LogoutPage from './pages/LogoutPage.jsx'
 
-function AuthRequired({ children }) {
+function AuthRequired() {
   const { token, loading } = useAuth();
   if (loading) return <div>Chargement...</div>;
   if (!token) return <Navigate to="/login" replace />;
-  return children;
+  return <AuthContext.Provider value={{ token, loading }}><Outlet /></AuthContext.Provider>
 }
 
 createRoot(document.getElementById('root')).render(
@@ -30,5 +30,5 @@ createRoot(document.getElementById('root')).render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )
