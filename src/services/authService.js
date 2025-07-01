@@ -38,7 +38,6 @@ export async function refreshToken(refresh_token) {
 export async function logout(token) {
   let data;
   try {
-    console.log(token)
     const response = await fetch(`${BASE_URL}/auth/logout`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${token}` }

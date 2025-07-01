@@ -1,11 +1,31 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { logout } from './services/authService';
 import reactLogo from './assets/react.svg'
 import golendarLogo from './assets/logo.svg'
 import viteLogo from './assets/vite.svg'
 import './styles/App.css'
 
 function App() {
+  const navigate = useNavigate();
   const [count, setCount] = useState(0)
+  const [logoutSuccess, setLogoutSuccess] = useState(false);
+  const [logoutError, setLogoutError] = useState(null);
+
+  const handleLogout = async () => {
+    setLogoutSuccess(false);
+    setLogoutError(null);
+    const token = localStorage.getItem('token');
+    try {
+      await logout(token);
+      setLogoutSuccess(true);
+      localStorage.removeItem('token');
+      navigate('/logout');
+      // Tu peux aussi faire localStorage.removeItem('token') ici si tu veux
+    } catch (e) {
+      setLogoutError('Erreur lors de la déconnexion');
+    }
+  };
 
   return (
     <>
@@ -25,6 +45,11 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={handleLogout} style={{ marginLeft: '1rem' }}>
+          Déconnexion
+        </button>
+        {logoutSuccess && <div>Déconnexion réussie.</div>}
+        {logoutError && <div style={{color: 'red'}}>{logoutError}</div>}
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>

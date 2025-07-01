@@ -8,8 +8,8 @@ import { AuthContext } from './contexts/authContext.js'
 import './styles/index.css'
 import App from './App.jsx'
 import LoginPage from './pages/LoginPage.jsx'
-import RegisterPage from './pages/RegisterPage.jsx'
 import LogoutPage from './pages/LogoutPage.jsx'
+import RegisterPage from './pages/RegisterPage.jsx'
 
 function AuthRequired() {
   const { token, loading } = useAuth();
@@ -23,10 +23,10 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/logout" element={<LogoutPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route element={<AuthRequired />}>
-          <Route path="/home" element={<App />} /> 
-          <Route path="/logout" element={<LogoutPage />} />
+          <Route path="/home" element={<App />} />
         </Route>
       </Routes>
     </BrowserRouter>
