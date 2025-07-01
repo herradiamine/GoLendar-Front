@@ -17,11 +17,15 @@ export default function RegisterForm() {
     setLoading(true);
     try {
       const data = await registerUser({ lastname, firstname, email, password });
-      setSuccess(data.message);
-      setLastname('');
-      setFirstname('');
-      setEmail('');
-      setPassword('');
+      if(data.success) {
+        setSuccess(data.message);
+        setLastname('');
+        setFirstname('');
+        setEmail('');
+        setPassword('');
+      } else {
+        setError(data.error);
+      }
     } catch (e) {
       setError(e.message);
     } finally {
