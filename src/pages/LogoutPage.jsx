@@ -1,4 +1,5 @@
 import LogoutComponent from '../components/LogoutComponent';
+import '../styles/LogoutPage.css';
 
 function LogoutPage() {
   return (

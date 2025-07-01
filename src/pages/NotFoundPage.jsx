@@ -1,8 +1,11 @@
+import NotFoundComponent from '../components/NotFoundComponent';
+import '../styles/NotFoundPage.css';
+
 export default function NotFoundPage() {
   return (
-    <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+    <div>
       <h1>404</h1>
-      <p>Page non trouvée</p>
+      <NotFoundComponent/>
     </div>
   );
 } 
