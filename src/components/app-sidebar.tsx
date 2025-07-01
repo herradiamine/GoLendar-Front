@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image";
 import {
   BookOpen,
   Bot,
@@ -14,7 +15,6 @@ import {
   SquareTerminal,
 } from "lucide-react"
 
-import Logo from "../../public/logo.svg"
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
@@ -33,7 +33,7 @@ const data = {
   user: {
     name: "Amine Herradi",
     email: "amineherradi@gmail.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/globe.svg",
   },
   navMain: [
     {
@@ -182,7 +182,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <img src="logo.svg" />
+                  <Image
+                    aria-hidden
+                    src="/logo.svg"
+                    alt="Golendar Logo"
+                    width={32}
+                    height={32}
+                  />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">Golendar</span>
