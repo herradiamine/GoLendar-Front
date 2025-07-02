@@ -6,6 +6,7 @@ export function useAuth() {
   const [token, setToken] = useState(() => localStorage.getItem('token'));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   // Récupère le profil utilisateur si token présent
   useEffect(() => {
@@ -28,21 +29,19 @@ export function useAuth() {
   const login = useCallback(async (email, password) => {
     setLoading(true);
     setError(null);
+    setSuccess(false);
     try {
       const data = await apiLogin(email, password);
-      setToken(data.token);
-      localStorage.setItem('token', data.data.session_token);
-      setUser(data.user);
+      if (data.success) {
+        setToken(data.token);
+        localStorage.setItem('token', data.data.session_token);
+        setUser(data.user);
+      } else {
+        setError(data.error);
+      }
+      setSuccess(data.success);
       return data;
     } catch (e) {
-      // Si l'API retourne un message d'erreur, l'afficher
-      if (e.response) {
-        const errorData = await e.response.json().catch(() => null);
-        setError(errorData?.message || e.message);
-      } else {
-        setError(e.message);
-      }
-      throw e;
     } finally {
       setLoading(false);
     }
@@ -60,5 +59,5 @@ export function useAuth() {
     localStorage.removeItem('token');
   }, [token]);
 
-  return { user, token, loading, error, login, logout };
+  return { user, token, loading, error, success, login, logout };
 } 

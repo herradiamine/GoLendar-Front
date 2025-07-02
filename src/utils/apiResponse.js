@@ -1,7 +1,17 @@
 export function handleApiResponse(response) {
   if (response.success) {
-    return { data: response.data, message: response.message, error: null };
+    return {
+      success: response.success,
+      data: response.data,
+      message: response.message,
+      error: response.error
+    };
   } else {
-    return { data: null, message: response.message, error: response.error || 'Erreur inconnue' };
+    return {
+      success: response.success,
+      data: null,
+      message: response.message,
+      error: response.error || 'Erreur inconnue'
+    };
   }
 } 

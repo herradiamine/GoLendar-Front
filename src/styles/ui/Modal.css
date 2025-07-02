@@ -1,0 +1,33 @@
+.ui-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.ui-modal {
+  background: var(--tint-18);
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(18, 123, 202, 0.15);
+  padding: 2em;
+  min-width: 320px;
+  max-width: 90vw;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  color: var(--blue-900);
+  position: relative;
+}
+.ui-modal-close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: var(--blue-900);
+  cursor: pointer;
+}
+.ui-modal-close:hover {
+  color: var(--blue-800);
+} 
