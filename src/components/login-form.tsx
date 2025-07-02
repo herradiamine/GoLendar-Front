@@ -12,13 +12,14 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Alert from "@/components/alert-component";
 
 export default function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate();
-  const { login, loading, error, success } = useAuth();
+  const { login, loading, error, success, message } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,7 +28,7 @@ export default function LoginForm({
     try {
       const data = await login(email, password);
       if (data.success) {
-        navigate('/home');
+        //navigate('/home');
       }
     } catch (e) {}
   };
@@ -50,6 +51,7 @@ export default function LoginForm({
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                  onChange={e => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -63,7 +65,12 @@ export default function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={e => setPassword(e.target.value)}
+                  required
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">
@@ -74,8 +81,12 @@ export default function LoginForm({
                 </Button>
               </div>
             </div>
+            <div className="mt-4 text-left text-sm">
+              {error && <Alert variant="destructive">{error}</Alert>}
+              {success && <Alert variant="default">{message}</Alert>}
+            </div>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
+              Don't have an account?{" "}
               <a href="#" className="underline underline-offset-4">
                 Sign up
               </a>

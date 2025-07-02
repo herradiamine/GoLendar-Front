@@ -6,6 +6,7 @@ export function useAuth() {
   const [token, setToken] = useState(() => localStorage.getItem('token'));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const [success, setSuccess] = useState(false);
 
   // Récupère le profil utilisateur si token présent
@@ -36,6 +37,7 @@ export function useAuth() {
         setToken(data.token);
         localStorage.setItem('token', data.data.session_token);
         setUser(data.user);
+        setMessage(data.message);
       } else {
         setError(data.error);
       }
@@ -59,5 +61,5 @@ export function useAuth() {
     localStorage.removeItem('token');
   }, [token]);
 
-  return { user, token, loading, error, success, login, logout };
+  return { user, token, loading, error, success, message, login, logout };
 } 

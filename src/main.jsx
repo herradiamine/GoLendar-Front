@@ -19,7 +19,6 @@ function AuthRequired() {
   if (!token) return <Navigate to="/login" replace />;
   return <AuthContext.Provider value={{ token, loading }}><Outlet /></AuthContext.Provider>
 }
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
