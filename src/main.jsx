@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage.jsx'
 import LogoutPage from './pages/LogoutPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
+import ThemeProvider from './components/theme-provider.js'
 
 function AuthRequired() {
   const { token, loading } = useAuth();
@@ -21,16 +22,18 @@ function AuthRequired() {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/logout" element={<LogoutPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path='/' element={<AuthRequired />}>
-          <Route path="/home" element={<App />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path='/' element={<AuthRequired />}>
+            <Route path="/home" element={<App />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>
 )
