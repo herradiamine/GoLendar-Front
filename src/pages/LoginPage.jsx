@@ -1,12 +1,9 @@
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/login-form';
 import '../styles/LoginPage.css';
 
 function LoginPage() {
   return (
-    <div>
-      <h1>Connexion</h1>
-      <LoginForm />
-    </div>
+    <LoginForm />
   );
 }
 
