@@ -7,7 +7,7 @@ type AlertComponentProps = {
     children?: React.ReactNode
 }
 
-export default function LoginForm({
+export default function AlertComponent({
     className,
     children, 
     variant,
