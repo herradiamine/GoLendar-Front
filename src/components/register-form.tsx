@@ -78,10 +78,10 @@ export default function LoginForm({
                 <Button type="submit" className="w-full">Register</Button>
                 <Button variant="outline" className="w-full">Register with Google</Button>
               </div>
-            </div>
-            <div className="mt-4 text-left text-sm">
-              {error && <Alert variant="destructive">{error}</Alert>}
-              {success && <Alert variant="default">{message}</Alert>}
+              <div className="flex flex-col gap-3">
+                {error && <Alert variant="destructive">{error}</Alert>}
+                {success && <Alert variant="default">{message}</Alert>}
+              </div>
             </div>
           </form>
         </CardContent>
