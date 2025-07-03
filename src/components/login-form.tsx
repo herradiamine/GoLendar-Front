@@ -28,7 +28,7 @@ export default function LoginForm({
     try {
       const data = await login(email, password);
       if (data.success) {
-        //navigate('/home');
+        navigate('/home');
       }
     } catch (e) {}
   };
