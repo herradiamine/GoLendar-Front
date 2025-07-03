@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ProfileForm } from "@/components/form-example"
 import Alert from "@/components/alert-component";
 
 export default function LoginForm({
@@ -48,7 +49,9 @@ export default function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <ProfileForm />
+
+      {/* <Card>
         <CardHeader>
           <CardTitle>Create a new account</CardTitle>
           <CardDescription>
@@ -85,7 +88,7 @@ export default function LoginForm({
             </div>
           </form>
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   )
 }

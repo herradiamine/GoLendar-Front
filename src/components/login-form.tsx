@@ -41,7 +41,7 @@ export default function LoginForm({
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Enter your informations below to login to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
