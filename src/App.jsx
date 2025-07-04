@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { logout } from './services/authService';
+import { logout } from './services/auth';
 import reactLogo from './assets/react.svg'
 import golendarLogo from './assets/logo.svg'
 import viteLogo from './assets/vite.svg'
@@ -9,21 +9,14 @@ import './styles/App.css'
 function App() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0)
-  const [logoutSuccess, setLogoutSuccess] = useState(false);
   const [logoutError, setLogoutError] = useState(null);
 
   const handleLogout = async () => {
-    setLogoutSuccess(false);
-    setLogoutError(null);
     const token = localStorage.getItem('token');
-    try {
-      await logout(token);
-      setLogoutSuccess(true);
+    const response = await logout(token);
+    if (response.success) {
       localStorage.removeItem('token');
       navigate('/logout');
-      // Tu peux aussi faire localStorage.removeItem('token') ici si tu veux
-    } catch (e) {
-      setLogoutError('Erreur lors de la déconnexion');
     }
   };
 

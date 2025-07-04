@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { login as apiLogin, logout as apiLogout, getProfile } from '../services/authService';
+import { login as apiLogin, logout as apiLogout, getProfile } from '../services/auth';
 
 export function useAuth() {
   const [user, setUser] = useState(null);
@@ -32,7 +32,7 @@ export function useAuth() {
     setError(null);
     setSuccess(false);
     try {
-      const data = await apiLogin(email, password);
+      const data = await apiLogin({email, password});
       if (data.success) {
         setToken(data.token);
         localStorage.setItem('token', data.data.session_token);
