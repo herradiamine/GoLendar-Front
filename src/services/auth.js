@@ -19,6 +19,7 @@ export async function refreshToken(data) {
 // Déconnexion utilisateur
 export async function logout() {
   const session_token = localStorage.getItem('session_token');
+  localStorage.removeItem('session_token');
   const response = await api.post('/auth/logout', null, {headers: {Authorization: 'Bearer '+session_token}});
   return response;
 }

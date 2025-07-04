@@ -14,17 +14,23 @@ import NotFoundPage from './pages/NotFoundPage.jsx'
 import ThemeProvider from './components/theme-provider.js'
 import { fetchUserProfile } from './store/userSlice.js';
 
-function AuthRequired() {
+export function AuthRequired() {
   const dispatch = useDispatch();
-  const { profile, status, error } = useSelector((state) => state.user);
+  const { response, status, error } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(fetchUserProfile());
   }, [dispatch]);
 
-  if (status === 'loading') return <div>Chargement...</div>;
-  if (status === 'failed') return <Navigate to="/login" replace />;
-  if (status === 'succeeded') return <Outlet />;
+  if (status === 'loading') {
+    return <><div>Chargement...</div></>;
+  }
+  if (status === 'failed') {
+    return <Navigate to="/login" replace/>;
+  }
+  if (status === 'succeeded') {
+    return (response.success) ? <Outlet/> : <Navigate to="/login" replace/>;
+  }
 }
 createRoot(document.getElementById('root')).render(
   <Provider store={Store}>

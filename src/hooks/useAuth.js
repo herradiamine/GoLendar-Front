@@ -59,6 +59,7 @@ export function useAuth() {
     setToken(null);
     setUser(null);
     localStorage.removeItem('token');
+    // Note: Si tu utilises Redux, tu devrais aussi dispatcher clearProfile ici
   }, [token]);
 
   return { user, token, loading, error, success, message, login, logout };

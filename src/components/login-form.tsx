@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserProfile } from '@/store/userSlice';
 import { login } from '@/services/auth';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -23,17 +21,22 @@ export default function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { error } = useSelector((state: { user: { error?: string } }) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await login({ email, password });
     if (data.success === true) {
-      dispatch(fetchUserProfile());
+      setSuccess(true);
+      setMessage(data.message);
       navigate('/home');
+    } else {
+      setSuccess(false);
+      setError(data.error);
     }
   };
 
@@ -66,7 +69,7 @@ export default function LoginForm({
               </div>
               <div className="flex flex-col gap-3">
                 {error && <Alert variant="destructive">{error}</Alert>}
-                {/*success && <Alert variant="default">{message}</Alert>*/}
+                {success && <Alert variant="default">{message}</Alert>}
               </div>
             </div>
             <div className="mt-4 text-center text-sm">

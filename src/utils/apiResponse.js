@@ -31,9 +31,7 @@ export function handleApiResponse(response) {
  * @returns {ApiResponse}
  */
 export function handleApiResponseError(error) {
-  console.log("Error :");
-  console.log(error);
-  const api_error = error.data;
+  const api_error = (error?.response) ? error.response : null;
   // Cas où l'API a répondu avec un message d'erreur structuré
   if (api_error && api_error.data) {
     return {
@@ -45,12 +43,12 @@ export function handleApiResponseError(error) {
   }
 
   // Cas d'erreur réseau ou autre erreur Axios
-  if (response.message) {
+  if (api_error.message) {
     return {
       success: false,
       data: [],
       message: null,
-      error: response.message
+      error: api_error.message
     };
   }
 

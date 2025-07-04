@@ -4,27 +4,22 @@ import { handleApiResponse, handleApiResponseError } from '../utils/apiResponse'
 
 // Thunk pour récupérer le profil utilisateur
 export const fetchUserProfile = createAsyncThunk(
-  'user/fetchProfile',
+  'user/fetchUserProfile',
   async () => {
-    try {
-      const response = await getProfile();
-      return handleApiResponse(response); // adapte selon la structure de ta réponse
-    } catch (error) {
-      return handleApiResponseError(error);
-    }
+    return await getProfile();
   }
 );
 
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    profile: null,
+    response: null,
     status: 'idle',
     error: null,
   },
   reducers: {
     clearProfile: (state) => {
-      state.profile = null;
+      state.response = null;
       state.status = 'idle';
       state.error = null;
     },
@@ -33,14 +28,17 @@ const userSlice = createSlice({
     builder
       .addCase(fetchUserProfile.pending, (state) => {
         state.status = 'loading';
+        state.response = null;
         state.error = null;
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.profile = action.payload;
+        state.response = action.payload;
+        state.error = null;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.status = 'failed';
+        state.response = null;
         state.error = action.payload;
       });
   },
