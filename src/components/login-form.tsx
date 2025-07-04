@@ -24,11 +24,11 @@ export default function LoginForm({
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { profile, status, error } = useSelector((state) => state.user);
+  const { error } = useSelector((state: { user: { error?: string } }) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await login({ email, password });
     if (data.success === true) {
