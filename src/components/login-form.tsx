@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserProfile } from '@/store/userSlice';
 import { login } from '@/services/auth';
 import { cn } from "@/lib/utils";
