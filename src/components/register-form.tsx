@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { registerUser } from '../services/userService';
+import { registerUser } from '../services/user';
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ProfileForm } from "@/components/form-example"
 import Alert from "@/components/alert-component";
 
 export default function LoginForm({
@@ -49,9 +48,7 @@ export default function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <ProfileForm />
-
-      {/* <Card>
+      <Card>
         <CardHeader>
           <CardTitle>Create a new account</CardTitle>
           <CardDescription>
@@ -88,7 +85,7 @@ export default function LoginForm({
             </div>
           </form>
         </CardContent>
-      </Card> */}
+      </Card>
     </div>
   )
 }
