@@ -16,11 +16,12 @@ import { AxiosError } from "axios";
  * @returns {ApiResponse}
  */
 export function handleApiResponse(response) {
+  const api_response = response.data;
   return {
-    success: response.success || false,
-    data: response.data ?? [],
-    message: response.message || null,
-    error: response.error || null
+    success: api_response.success ?? false,
+    data: api_response.data ?? [],
+    message: api_response.message ?? null,
+    error: api_response.error ?? null
   };
 }
 
@@ -30,23 +31,26 @@ export function handleApiResponse(response) {
  * @returns {ApiResponse}
  */
 export function handleApiResponseError(error) {
+  console.log("Error :");
+  console.log(error);
+  const api_error = error.data;
   // Cas où l'API a répondu avec un message d'erreur structuré
-  if (error.response && error.response.data) {
+  if (api_error && api_error.data) {
     return {
       success: false,
       data: [],
-      message: error.response.data.message || null,
-      error: error.response.data.error || error.message || 'Erreur API'
+      message: api_error.data.message || null,
+      error: api_error.data.error || api_error.message || 'Erreur API'
     };
   }
 
   // Cas d'erreur réseau ou autre erreur Axios
-  if (error.message) {
+  if (response.message) {
     return {
       success: false,
       data: [],
       message: null,
-      error: error.message
+      error: response.message
     };
   }
 

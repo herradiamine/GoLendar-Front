@@ -10,13 +10,18 @@ function App() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0)
   const [logoutError, setLogoutError] = useState(null);
+  const [logoutSuccess, setLogoutSuccess] = useState(null);
 
   const handleLogout = async () => {
     const token = localStorage.getItem('token');
     const response = await logout(token);
     if (response.success) {
       localStorage.removeItem('token');
+      setLogoutSuccess(true);
       navigate('/logout');
+    } else {
+      setLogoutSuccess(false);
+      setLogoutError(response.error);
     }
   };
 

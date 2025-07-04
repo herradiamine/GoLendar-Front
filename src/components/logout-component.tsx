@@ -13,7 +13,7 @@ export default function LogoutComponent() {
             <Alert variant="default">Déconnexion réussie.</Alert>
         </CardContent>
         <CardFooter>
-            <Button variant="default" className="mt-4" onClick={() => navigate('/home')}>
+            <Button variant="default" className="mt-4" onClick={() => navigate('/login')}>
                 Retour à l'accueil
             </Button>
         </CardFooter>

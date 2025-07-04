@@ -3,6 +3,10 @@ import { api } from '../lib/client';
 // Connexion utilisateur
 export async function login(data) {
   const response = await api.post('/auth/login', data);
+  if (response.success) {
+    localStorage.setItem('session_token', response.data.session_token);
+    localStorage.setItem('refresh_token', response.data.refresh_token);
+  }
   return response;
 }
 
@@ -14,13 +18,15 @@ export async function refreshToken(data) {
 
 // Déconnexion utilisateur
 export async function logout() {
-  const response = await api.post('/auth/logout');
+  const session_token = localStorage.getItem('session_token');
+  const response = await api.post('/auth/logout', null, {headers: {Authorization: 'Bearer '+session_token}});
   return response;
 }
 
 // Récupération du profil utilisateur connecté
 export async function getProfile() {
-  const response = await api.get('/auth/me');
+  const session_token = localStorage.getItem('session_token');
+  const response = await api.get('/auth/me', {headers: {Authorization: 'Bearer '+session_token}});
   return response;
 }
 

@@ -1,19 +1,21 @@
 "use client"
 
 import { useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUserProfile } from '@/store/userSlice';
+import { login } from '@/services/auth';
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Alert from "@/components/alert-component";
 
 export default function LoginForm({
@@ -21,18 +23,18 @@ export default function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate();
-  const { login, loading, error, success, message } = useAuth();
+  const dispatch = useDispatch();
+  const { profile, status, error } = useSelector((state) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    try {
-      const data = await login(email, password);
-      if (data.success) {
-        navigate('/home');
-      }
-    } catch (e) {}
+    const data = await login({ email, password });
+    if (data.success === true) {
+      dispatch(fetchUserProfile());
+      navigate('/home');
+    }
   };
 
   return (
@@ -64,7 +66,7 @@ export default function LoginForm({
               </div>
               <div className="flex flex-col gap-3">
                 {error && <Alert variant="destructive">{error}</Alert>}
-                {success && <Alert variant="default">{message}</Alert>}
+                {/*success && <Alert variant="default">{message}</Alert>*/}
               </div>
             </div>
             <div className="mt-4 text-center text-sm">
