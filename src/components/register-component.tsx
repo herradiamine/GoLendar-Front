@@ -1,22 +1,24 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/user';
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Alert from "@/components/alert-component";
 
 export default function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const navigate = useNavigate();
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
   const [email, setEmail] = useState('');
@@ -80,7 +82,13 @@ export default function LoginForm({
               </div>
               <div className="flex flex-col gap-3">
                 {error && <Alert variant="destructive">{error}</Alert>}
-                {success && <Alert variant="default">{message}</Alert>}
+                {success && <>
+                  <Alert variant="default">{message}</Alert>
+                  <Button variant="default" className="mt-4" onClick={() => navigate('/login')}>
+                      Se connecter
+                  </Button>
+                </>
+                }
               </div>
             </div>
           </form>

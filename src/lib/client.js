@@ -13,12 +13,27 @@ const apiClient = axios.create({
   },
 });
 
+export function getAuthHeaders() {
+  const session_token = localStorage.getItem('session_token');
+  return session_token ? { Authorization: 'Bearer ' + session_token } : {};
+}
+
+export function withAuth(config = {}) {
+  return {
+    ...config,
+    headers: {
+      ...getAuthHeaders(),
+      ...(config.headers || {})
+    }
+  };
+}
+
 // Méthodes utilitaires pour les requêtes HTTP
 export const api = {
   // GET
-  get: async (url, config = {}) => {
+  get: async (url, config = {}, requireAuth = false) => {
     try {
-      const response = await apiClient.get(url, config);
+      const response = await apiClient.get(url, (requireAuth) ? withAuth(config) : config);
       return handleApiResponse(response);
     } catch (error) {
       return handleApiResponseError(error);
@@ -26,9 +41,9 @@ export const api = {
   },
 
   // POST
-  post: async (url, data = {}, config = {}) => {
+  post: async (url, data = {}, config = {}, requireAuth = false) => {
     try {
-      const response = await apiClient.post(url, data, config);
+      const response = await apiClient.post(url, data, (requireAuth) ? withAuth(config) : config);
       return handleApiResponse(response);
     } catch (error) {
       return handleApiResponseError(error);
@@ -36,9 +51,9 @@ export const api = {
   },
 
   // PUT
-  put: async (url, data = {}, config = {}) => {
+  put: async (url, data = {}, config = {}, requireAuth = false) => {
     try {
-      const response = await apiClient.put(url, data, config);
+      const response = await apiClient.put(url, data, (requireAuth) ? withAuth(config) : config);
       return handleApiResponse(response);
     } catch (error) {
       return handleApiResponseError(error);
@@ -46,9 +61,9 @@ export const api = {
   },
 
   // PATCH
-  patch: async (url, data = {}, config = {}) => {
+  patch: async (url, data = {}, config = {}, requireAuth = false) => {
     try {
-      const response = await apiClient.patch(url, data, config);
+      const response = await apiClient.patch(url, data, (requireAuth) ? withAuth(config) : config);
       return handleApiResponse(response);
     } catch (error) {
       return handleApiResponseError(error);
@@ -56,9 +71,9 @@ export const api = {
   },
 
   // DELETE
-  delete: async (url, config = {}) => {
+  delete: async (url, config = {}, requireAuth = false) => {
     try {
-      const response = await apiClient.delete(url, config);
+      const response = await apiClient.delete(url, (requireAuth) ? withAuth(config) : config);
       return handleApiResponse(response);
     } catch (error) {
       return handleApiResponseError(error);

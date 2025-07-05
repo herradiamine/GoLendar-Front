@@ -12,31 +12,32 @@ export async function login(data) {
 
 // Rafraîchissement de token
 export async function refreshToken(data) {
-  const response = await api.post('/auth/refresh', data);
+  const response = await api.post('/auth/refresh', data, {}, true);
   return response;
 }
 
 // Déconnexion utilisateur
 export async function logout() {
-  const session_token = localStorage.getItem('session_token');
-  localStorage.removeItem('session_token');
-  const response = await api.post('/auth/logout', null, {headers: {Authorization: 'Bearer '+session_token}});
+  const response = await api.post('/auth/logout', {}, true);
+  if (response.success) {
+    localStorage.removeItem('session_token');
+    localStorage.removeItem('refresh_token');
+  }
   return response;
 }
 
 // Récupération du profil utilisateur connecté
 export async function getProfile() {
-  const session_token = localStorage.getItem('session_token');
-  const response = await api.get('/auth/me', {headers: {Authorization: 'Bearer '+session_token}});
+  const response = await api.get('/auth/me', {}, true);
   return response;
 }
 
 export async function getSessions() {
-  const response = await api.get('/auth/sessions');
+  const response = await api.get('/auth/sessions', {}, true);
   return response;
 }
 
 export async function deleteSession(sessionId) {
-  const response = await api.delete(`/auth/sessions/${sessionId}`);
+  const response = await api.delete(`/auth/sessions/${sessionId}`, {}, true);
   return response;
 }
