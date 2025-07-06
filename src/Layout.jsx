@@ -3,9 +3,10 @@ import { Navigate } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { SidebarComponent } from '@/components/sidebar-component';
-import { fetchUserProfile } from './store/userSlice.js';
+import { fetchUserProfile } from '@/store/userSlice.js';
+import BreadcrumbComponent from '@/components/breadcrumb-component';
 
 export function Layout() {
   const dispatch = useDispatch();
@@ -26,10 +27,12 @@ export function Layout() {
       return (
         <SidebarProvider>
           <SidebarComponent />
-          <main>
-            <SidebarTrigger />
-            <Outlet/>
-          </main>
+          <SidebarInset>
+            <main>
+              <BreadcrumbComponent />
+              <Outlet/>
+            </main>
+          </SidebarInset>
         </SidebarProvider>
       )
     } else {

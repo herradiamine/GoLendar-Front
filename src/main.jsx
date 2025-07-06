@@ -12,6 +12,7 @@ import LogoutPage from './pages/LogoutPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import ThemeProvider from './components/theme-provider.js';
+import DashboardPage from './pages/DashboardPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <Provider store={Store}>
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/register" element={<RegisterPage />} />
             <Route path='/' element={<Layout />}>
                 <Route path="/home" element={<App />} />
+                <Route path="/dashboard" element={<DashboardPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
