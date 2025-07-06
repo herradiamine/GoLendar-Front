@@ -35,7 +35,7 @@ export default function LoginPage() {
         localStorage.setItem("session_token", session_token)
         localStorage.setItem("refresh_token", refresh_token)
         toast(response.message);
-        navigate("/home");
+        navigate("/dashboard");
       } else {
         toast(error);
       }

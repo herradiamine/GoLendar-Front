@@ -13,10 +13,7 @@ createRoot(document.getElementById('root')).render(
   <Provider store={Store}>
     <StrictMode>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <BrowserRouter future={{ 
-          v7_relativeSplatPath: true,
-          v7_startTransition: true
-        }}>
+        <BrowserRouter>
           <App/>
         </BrowserRouter>
       </ThemeProvider>
