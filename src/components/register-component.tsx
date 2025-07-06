@@ -60,7 +60,7 @@ export default function RegisterComponent() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">
             <div className="flex justify-center rounded-xl border">
-              <img src="src/assets/banniere_golendar_v2.png" />
+              <img src="src/assets/logo-v2.svg" />
             </div>
           </CardTitle>
           <CardDescription>Créez votre compte</CardDescription>

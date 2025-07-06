@@ -37,7 +37,7 @@ export default function LoginPage() {
         toast(response.message);
         navigate("/dashboard");
       } else {
-        toast(error);
+        setError(response.error);
       }
     } catch (err: any) {
       if (err.response?.data?.error) {
@@ -47,7 +47,6 @@ export default function LoginPage() {
       } else {
         setError("Erreur de connexion au serveur")
       }
-      toast(error);
     } finally {
       setLoading(false)
     }
@@ -59,7 +58,7 @@ export default function LoginPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">
             <div className="flex justify-center rounded-xl border">
-              <img src="src/assets/banniere_golendar_v2.png" />
+              <img src="src/assets/logo-v2.svg" />
             </div>
           </CardTitle>
           <CardDescription>Connectez-vous à votre compte</CardDescription>
