@@ -11,14 +11,16 @@ export async function login(data) {
 }
 
 // Rafraîchissement de token
-export async function refreshToken(data) {
+export async function refreshToken() {
+  const refresh_token = localStorage.getItem('refresh_token');
+  const data = (refresh_token) ? {refresh_token: refresh_token} : {};
   const response = await api.post('/auth/refresh', data, {}, true);
   return response;
 }
 
 // Déconnexion utilisateur
 export async function logout() {
-  const response = await api.post('/auth/logout', {}, true);
+  const response = await api.post('/auth/logout', {}, {}, true);
   if (response.success) {
     localStorage.removeItem('session_token');
     localStorage.removeItem('refresh_token');
