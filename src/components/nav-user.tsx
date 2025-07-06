@@ -29,6 +29,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/services/auth';
+import { clearProfile } from '@/store/userSlice';
 
 export function NavUser({
   user,
@@ -40,6 +45,27 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [logoutError, setLogoutError] = useState(null);
+  const [logoutSuccess, setLogoutSuccess] = useState(null);
+
+  const handleLogout = async () => {
+    try {
+      const response = await logout();
+      if (response.success) {
+        dispatch(clearProfile());
+        setLogoutSuccess(true);
+        navigate('/logout');
+      } else {
+        setLogoutSuccess(false);
+        setLogoutError(response.error);
+      }
+    } catch (error) {
+      setLogoutSuccess(false);
+      setLogoutError('Erreur lors de la déconnexion');
+    }
+  };
 
   return (
     <SidebarMenu>
@@ -102,7 +128,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
               Log out
             </DropdownMenuItem>

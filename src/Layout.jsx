@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { SidebarComponent } from '@/components/sidebar-component';
 import { fetchUserProfile } from '@/store/userSlice.js';
@@ -32,6 +32,7 @@ export function Layout() {
               <BreadcrumbComponent />
               <Outlet/>
             </main>
+            <Toaster />
           </SidebarInset>
         </SidebarProvider>
       )

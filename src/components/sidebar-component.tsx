@@ -1,23 +1,11 @@
 "use client"
 
-import * as React from "react"
-import {
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
-
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import * as React from "react";
+import { Calendar, Home, LifeBuoy, Send, Settings2, ShieldCheck } from "lucide-react";
+import { NavMain } from "@/components/nav-main";
+import { NavProjects } from "@/components/nav-projects";
+import { NavSecondary } from "@/components/nav-secondary";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -26,88 +14,57 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Amine Herradi",
+    email: "amineherradi@gmail.com",
+    avatar: "AH",
   },
   navMain: [
     {
-      title: "Playground",
+      title: "Tableau de bord",
       url: "#",
-      icon: SquareTerminal,
+      icon: Home,
+    },
+    {
+      title: "Calendriers",
+      url: "#",
+      icon: Calendar,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Agenda familiale",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Agenda professionnel",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Agenda personnel",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Sessions",
       url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      icon: ShieldCheck
     },
     {
       title: "Settings",
       url: "#",
       icon: Settings2,
+      isActive: true,
       items: [
         {
-          title: "General",
+          title: "Profil",
           url: "#",
         },
         {
-          title: "Team",
+          title: "General",
           url: "#",
         },
         {
@@ -115,7 +72,7 @@ const data = {
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Notifications",
           url: "#",
         },
       ],
@@ -133,23 +90,7 @@ const data = {
       icon: Send,
     },
   ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+  projects: [],
 }
 
 export function SidebarComponent({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -161,11 +102,11 @@ export function SidebarComponent({ ...props }: React.ComponentProps<typeof Sideb
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Command className="size-4" />
+                  <img src="../assets/logo.svg" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                  <span className="truncate font-medium">GoLendar</span>
+                  <span className="truncate text-xs">Gestionnaire de calendriers</span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -173,9 +114,9 @@ export function SidebarComponent({ ...props }: React.ComponentProps<typeof Sideb
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        {data.navMain.length && <NavMain items={data.navMain} />}
+        {data.projects.length > 0 && <NavProjects projects={data.projects} />}
+        {data.navSecondary.length && <NavSecondary items={data.navSecondary} className="mt-auto" />}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

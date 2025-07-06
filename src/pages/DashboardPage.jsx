@@ -1,5 +1,5 @@
-import DashboardComponent from '../components/dashboard-component';
-import '../styles/LoginPage.css';
+import DashboardComponent from '@/components/dashboard-component';
+import '@/styles/DashboardPage.css';
 
 function DashboardPage() {
   return (

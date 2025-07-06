@@ -1,5 +1,5 @@
 import NotFoundComponent from '../components/not-found-component';
-import '../styles/NotFoundPage.css';
+import '@/styles/NotFoundPage.css';
 
 export default function NotFoundPage() {
   return (
