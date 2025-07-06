@@ -48,26 +48,18 @@ export function NavUser({
   const { isMobile } = useSidebar()
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [logoutError, setLogoutError] = useState(null);
-  const [logoutSuccess, setLogoutSuccess] = useState(null);
-
   const handleLogout = async () => {
     try {
       const response = await logout();
       if (response.success) {
         dispatch(clearProfile());
-        setLogoutSuccess(true);
         toast(response.message);
         navigate('/logout');
       } else {
         toast(response.error);
-        setLogoutSuccess(false);
-        setLogoutError(response.error);
       }
     } catch (error) {
       toast('Erreur lors de la déconnexion');
-      setLogoutSuccess(false);
-      setLogoutError('Erreur lors de la déconnexion');
     }
   };
 

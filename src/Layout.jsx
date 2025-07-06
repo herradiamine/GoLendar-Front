@@ -10,7 +10,7 @@ import BreadcrumbComponent from '@/components/breadcrumb-component';
 
 export function Layout() {
   const dispatch = useDispatch();
-  const { response, status, error } = useSelector((state) => state.user);
+  const { response, status } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(fetchUserProfile());

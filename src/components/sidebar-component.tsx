@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Calendar, Home, LifeBuoy, Send, Settings2, ShieldCheck } from "lucide-react";
+import { useSelector } from "react-redux";
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -16,84 +17,91 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const data = {
-  user: {
-    name: "Amine Herradi",
-    email: "amineherradi@gmail.com",
-    avatar: "AH",
-  },
-  navMain: [
-    {
-      title: "Tableau de bord",
-      url: "#",
-      icon: Home,
-    },
-    {
-      title: "Calendriers",
-      url: "#",
-      icon: Calendar,
-      isActive: true,
-      items: [
-        {
-          title: "Agenda familiale",
-          url: "#",
-        },
-        {
-          title: "Agenda professionnel",
-          url: "#",
-        },
-        {
-          title: "Agenda personnel",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Sessions",
-      url: "#",
-      icon: ShieldCheck
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      isActive: true,
-      items: [
-        {
-          title: "Profil",
-          url: "#",
-        },
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Notifications",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  projects: [],
-}
-
 export function SidebarComponent({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  // Récupération de l'état de l'utilisateur depuis Redux
+  const { response: user } = useSelector((state: any) => state.user);
+  
+  const data = {
+    user: {
+      name: user.data.firstname + ' ' + user.data.lastname,
+      email: user.data.email,
+      avatar: "AH",
+    },
+    navMain: [
+      {
+        title: "Dashboard",
+        url: "/dashboard",
+        icon: Home,
+      },
+      {
+        title: "Calendars",
+        url: "/calendars",
+        icon: Calendar,
+        isActive: true,
+        items: [
+          {
+            title: "Family planing",
+            url: "#",
+          },
+          {
+            title: "Professional planing",
+            url: "#",
+          },
+          {
+            title: "Personal planing",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Sessions",
+        url: "/sessions",
+        icon: ShieldCheck
+      },
+      {
+        title: "Settings",
+        url: "#",
+        icon: Settings2,
+        isActive: true,
+        items: [
+          {
+            title: "Account",
+            url: "/settings/account",
+          },
+          {
+            title: "Profil",
+            url: "/settings/profil",
+          },
+          {
+            title: "General",
+            url: "/settings/general",
+          },
+          {
+            title: "Billing",
+            url: "/settings/billing",
+          },
+          {
+            title: "Notifications",
+            url: "/settings/notifications",
+          },
+        ],
+      },
+    ],
+    navSecondary: [
+      {
+        title: "Support",
+        url: "#",
+        icon: LifeBuoy,
+      },
+      {
+        title: "Feedback",
+        url: "#",
+        icon: Send,
+      },
+    ],
+    projects: [],
+  };
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -102,7 +110,7 @@ export function SidebarComponent({ ...props }: React.ComponentProps<typeof Sideb
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <img src="../assets/logo.svg" />
+                  <img src="src/assets/logo.svg" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">GoLendar</span>

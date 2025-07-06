@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getProfile } from '../services/auth';
-import { handleApiResponse, handleApiResponseError } from '../utils/apiResponse';
 
 // Thunk pour récupérer le profil utilisateur
 export const fetchUserProfile = createAsyncThunk(

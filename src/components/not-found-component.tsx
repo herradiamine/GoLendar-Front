@@ -21,7 +21,7 @@ export default function NotFoundComponent() {
           </Alert>
         </CardContent>
         <CardFooter>
-            <Button variant="default" className="mt-4" onClick={() => navigate('/home')}>
+            <Button variant="default" className="mt-4" onClick={() => navigate('/')}>
                 Retour à l'accueil
             </Button>
         </CardFooter>
