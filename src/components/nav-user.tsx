@@ -54,7 +54,7 @@ export function NavUser({
       if (response.success) {
         dispatch(clearProfile());
         toast(response.message);
-        navigate('/logout');
+        navigate('/login');
       } else {
         toast(response.error);
       }

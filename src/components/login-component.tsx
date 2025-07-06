@@ -1,84 +1,131 @@
 "use client"
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { login } from '@/services/auth';
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Alert from "@/components/alert-component";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Calendar, Eye, EyeOff } from "lucide-react";
+import { login } from '@/services/auth';
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
-export default function LoginForm({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = await login({ email, password });
-    if (data.success === true) {
-      setSuccess(true);
-      setMessage(data.message);
-      navigate('/home');
-    } else {
-      setSuccess(false);
-      setError(data.error);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError("")
+
+    try {
+      const response = await login({email, password})
+
+      if (response.success) {
+        // Store tokens in localStorage
+        const { session_token, refresh_token } = response.data
+        localStorage.setItem("session_token", session_token)
+        localStorage.setItem("refresh_token", refresh_token)
+        toast(response.message);
+        navigate("/dashboard");
+      } else {
+        toast(error);
+      }
+    } catch (err: any) {
+      if (err.response?.data?.error) {
+        setError(err.response.data.error)
+      } else if (err.response?.data?.message) {
+        setError(err.response.data.message)
+      } else {
+        setError("Erreur de connexion au serveur")
+      }
+      toast(error);
+    } finally {
+      setLoading(false)
     }
-  };
+  }
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
-            Enter your informations below to login to your account
-          </CardDescription>
+    <>
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold">
+            <div className="flex justify-center rounded-xl border">
+              <img src="src/assets/banniere_golendar_v2.png" />
+            </div>
+          </CardTitle>
+          <CardDescription>Connectez-vous à votre compte</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="m@example.com" onChange={e => setEmail(e.target.value)} required />
-              </div>
-              <div className="grid gap-3">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <a href="#" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">Forgot your password?</a>
-                </div>
-                <Input id="password" type="password" onChange={e => setPassword(e.target.value)} required />
-              </div>
-              <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">Login</Button>
-                <Button variant="outline" className="w-full">Login with Google</Button>
-              </div>
-              <div className="flex flex-col gap-3">
-                {error && <Alert variant="destructive">{error}</Alert>}
-                {success && <Alert variant="default">{message}</Alert>}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+
+            {message && (
+              <Alert>
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="votre@email.com"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Mot de passe</Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </Button>
               </div>
             </div>
-            <div className="mt-4 text-center text-sm">
-              Don't have an account?{" "}
-              <a href="/register" className="underline underline-offset-4">Sign up</a>
-            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Connexion..." : "Se connecter"}
+            </Button>
           </form>
+
+          <div className="mt-6 text-center text-sm">
+            <span className="text-muted-foreground">Pas encore de compte ? </span>
+            <a href="/register" className="text-blue-600 hover:underline">
+              S'inscrire
+            </a>
+          </div>
         </CardContent>
       </Card>
-    </div>
+    </>
   )
 }

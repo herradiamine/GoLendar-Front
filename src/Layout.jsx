@@ -17,7 +17,7 @@ export function Layout() {
   }, [dispatch]);
 
   if (status === 'loading') {
-    return (<><div>Chargement...</div></>);
+    return (<div>Chargement...</div>);
   }
   if (status === 'failed') {
     return (<Navigate to="/login" replace/>);
@@ -37,9 +37,7 @@ export function Layout() {
       )
     } else {
       return (
-        <>
-          <Navigate to="/login" replace/>
-        </>
+        <Navigate to="/login" replace/>
       );
     }
   }
