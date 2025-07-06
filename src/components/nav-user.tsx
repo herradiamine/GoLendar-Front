@@ -34,6 +34,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '@/services/auth';
 import { clearProfile } from '@/store/userSlice';
+import { toast } from "sonner";
 
 export function NavUser({
   user,
@@ -56,12 +57,15 @@ export function NavUser({
       if (response.success) {
         dispatch(clearProfile());
         setLogoutSuccess(true);
+        toast(response.message);
         navigate('/logout');
       } else {
+        toast(response.error);
         setLogoutSuccess(false);
         setLogoutError(response.error);
       }
     } catch (error) {
+      toast('Erreur lors de la déconnexion');
       setLogoutSuccess(false);
       setLogoutError('Erreur lors de la déconnexion');
     }

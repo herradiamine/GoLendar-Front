@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Store } from './store';
 import { Layout } from '@/Layout';
+import { Toaster } from 'sonner';
 
 import './styles/index.css';
 import App from './App.jsx';
@@ -32,5 +33,6 @@ createRoot(document.getElementById('root')).render(
         </BrowserRouter>
       </ThemeProvider>
     </StrictMode>
+    <Toaster />
   </Provider>
 )

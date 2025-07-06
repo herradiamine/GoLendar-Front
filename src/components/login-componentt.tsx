@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Calendar, Eye, EyeOff } from "lucide-react";
 import { login } from '@/services/auth';
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -33,10 +34,10 @@ export default function LoginPage() {
         const { session_token, refresh_token } = response.data
         localStorage.setItem("session_token", session_token)
         localStorage.setItem("refresh_token", refresh_token)
-
+        toast(response.message);
         navigate("/home");
       } else {
-        setError(response.error || response.message || "Erreur de connexion")
+        toast(error);
       }
     } catch (err: any) {
       if (err.response?.data?.error) {
@@ -46,6 +47,7 @@ export default function LoginPage() {
       } else {
         setError("Erreur de connexion au serveur")
       }
+      toast(error);
     } finally {
       setLoading(false)
     }

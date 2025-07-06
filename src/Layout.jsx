@@ -32,12 +32,15 @@ export function Layout() {
               <BreadcrumbComponent />
               <Outlet/>
             </main>
-            <Toaster />
           </SidebarInset>
         </SidebarProvider>
       )
     } else {
-      return (<Navigate to="/login" replace/>);
+      return (
+        <>
+          <Navigate to="/login" replace/>
+        </>
+      );
     }
   }
 }
