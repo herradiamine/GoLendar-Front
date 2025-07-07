@@ -110,7 +110,7 @@ export function SidebarComponent({ ...props }: React.ComponentProps<typeof Sideb
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <img src="src/assets/logo.svg" alt="GOL" />
+                  <img className="rounded" src="src/assets/logo.svg" alt="GL" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">GoLendar</span>
