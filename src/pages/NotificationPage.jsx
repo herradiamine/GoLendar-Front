@@ -2,9 +2,9 @@ import NotificationComponent from '@/components/notification-component';
 import '@/styles/NotificationPage.css';
 
 function NotificationPage() {
-  return (
-    <NotificationComponent />
-  );
+    return (
+        <NotificationComponent/>
+    );
 }
 
 export default NotificationPage;

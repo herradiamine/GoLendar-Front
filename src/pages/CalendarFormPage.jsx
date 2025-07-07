@@ -2,9 +2,9 @@ import CalendarFormComponent from "@/components/calendar-form-component.js";
 import '@/styles/CalendarFormPage.css';
 
 function CalendarFormPage() {
-  return (
-    <CalendarFormComponent />
-  );
+    return (
+        <CalendarFormComponent/>
+    );
 }
 
 export default CalendarFormPage;

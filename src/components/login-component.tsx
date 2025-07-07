@@ -11,7 +11,7 @@ import { login } from '@/services/auth';
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-export default function LoginPage() {
+export default function LoginComponent() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -2,9 +2,9 @@ import DashboardComponent from '@/components/dashboard-component';
 import '@/styles/DashboardPage.css';
 
 function DashboardPage() {
-  return (
-    <DashboardComponent />
-  );
+    return (
+        <DashboardComponent/>
+    );
 }
 
 export default DashboardPage;

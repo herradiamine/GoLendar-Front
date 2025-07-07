@@ -8,7 +8,7 @@
  * @property {string|null} error - Message d'erreur (optionnel)
  */
 
-import { AxiosError } from "axios";
+import {AxiosError} from "axios";
 
 /**
  * Formate une réponse API selon le standard
@@ -16,13 +16,13 @@ import { AxiosError } from "axios";
  * @returns {ApiResponse}
  */
 export function handleApiResponse(response) {
-  const api_response = response.data;
-  return {
-    success: api_response.success ?? false,
-    data: api_response.data ?? [],
-    message: api_response.message ?? null,
-    error: api_response.error ?? null
-  };
+    const api_response = response.data;
+    return {
+        success: api_response.success ?? false,
+        data: api_response.data ?? [],
+        message: api_response.message ?? null,
+        error: api_response.error ?? null
+    };
 }
 
 /**
@@ -31,32 +31,32 @@ export function handleApiResponse(response) {
  * @returns {ApiResponse}
  */
 export function handleApiResponseError(error) {
-  const api_error = (error?.response) ? error.response : null;
-  // Cas où l'API a répondu avec un message d'erreur structuré
-  if (api_error && api_error.data) {
-    return {
-      success: false,
-      data: [],
-      message: api_error.data.message || null,
-      error: api_error.data.error || api_error.message || 'Erreur API'
-    };
-  }
+    const api_error = (error?.response) ? error.response : null;
+    // Cas où l'API a répondu avec un message d'erreur structuré
+    if (api_error && api_error.data) {
+        return {
+            success: false,
+            data: [],
+            message: api_error.data.message || null,
+            error: api_error.data.error || api_error.message || 'Erreur API'
+        };
+    }
 
-  // Cas d'erreur réseau ou autre erreur Axios
-  if (api_error.message) {
-    return {
-      success: false,
-      data: [],
-      message: null,
-      error: api_error.message
-    };
-  }
+    // Cas d'erreur réseau ou autre erreur Axios
+    if (api_error.message) {
+        return {
+            success: false,
+            data: [],
+            message: null,
+            error: api_error.message
+        };
+    }
 
-  // Cas très rare : erreur inconnue
-  return {
-    success: false,
-    data: [],
-    message: null,
-    error: 'Erreur inconnue'
-  };
+    // Cas très rare : erreur inconnue
+    return {
+        success: false,
+        data: [],
+        message: null,
+        error: 'Erreur inconnue'
+    };
 }

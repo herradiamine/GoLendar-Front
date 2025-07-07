@@ -17,8 +17,12 @@ export function Layout() {
         dispatch(fetchUserProfile());
     }, [dispatch]);
 
-    if (status === 'loading') {return (<LoadingComponent/>);}
-    if (status === 'failed') {return (<Navigate to="/login" replace/>);}
+    if (status === 'loading') {
+        return (<LoadingComponent/>);
+    }
+    if (status === 'failed') {
+        return (<Navigate to="/login" replace/>);
+    }
     if (status === 'succeeded') {
         if (response.success) {
             return (
