@@ -1,18 +1,13 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
+import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert"
+import {Terminal} from "lucide-react"
 
 type AlertComponentProps = {
-    variant?:  "default" | "destructive"
+    variant?: "default" | "destructive"
     className?: string
     children?: React.ReactNode
 }
 
-export default function AlertComponent({
-    className,
-    children, 
-    variant,
-    ...props
-  }: AlertComponentProps) {
+export default function AlertComponent({className, children, variant, ...props}: AlertComponentProps) {
     let title = "";
     if (variant === "default") {
         title = "Message";
@@ -21,11 +16,11 @@ export default function AlertComponent({
     }
     return (
         <Alert variant={variant}>
-            <Terminal />
+            <Terminal/>
             <AlertTitle>{title}</AlertTitle>
             <AlertDescription>
                 {children}
             </AlertDescription>
-        </Alert>    
+        </Alert>
     )
-  }
+}

@@ -9,6 +9,7 @@ const routeConfig = {
   '/home': { label: 'Home' },
   '/dashboard': { label: 'Dashboard' },
   '/calendars': { label: 'Calendars' },
+  '/calendars/new': { label: 'New Calendar' },
   '/settings/account': { label: 'Account' },
   '/settings/profil': { label: 'Profil' },
   '/settings/general': { label: 'General' },
