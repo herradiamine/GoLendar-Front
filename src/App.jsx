@@ -6,7 +6,7 @@ import RegisterPage from '@/pages/RegisterPage.jsx';
 import NotFoundPage from '@/pages/NotFoundPage.jsx';
 import DashboardPage from '@/pages/DashboardPage.jsx';
 import AccountPage from '@/pages/AccountPage.jsx';
-import ProfilPage from '@/pages/ProfilPage.jsx';
+import ProfilePage from '@/pages/ProfilePage.jsx';
 import GeneralPage from '@/pages/GeneralPage.jsx';
 import BillingPage from '@/pages/BillingPage.jsx';
 import NotificationPage from '@/pages/NotificationPage.jsx';
@@ -30,7 +30,7 @@ function App() {
                 <Route path="/calendars/new" element={<CalendarFormPage/>}/>
                 <Route path="/settings">
                     <Route path="account" element={<AccountPage/>}/>
-                    <Route path="profil" element={<ProfilPage/>}/>
+                    <Route path="profil" element={<ProfilePage/>}/>
                     <Route path="general" element={<GeneralPage/>}/>
                     <Route path="billing" element={<BillingPage/>}/>
                     <Route path="notifications" element={<NotificationPage/>}/>
