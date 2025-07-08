@@ -4,16 +4,14 @@ import '@/styles/ProfilePage.css';
 
 function ProfilePage() {
     return (
-        <>
-            <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                <PageHeaderComponent
-                    title={"Profile"}
-                    description={" Edit your profile details like name, photo, and personal preferences."}
-                    buttons={[]}
-                />
-                <ProfileComponent/>
-            </div>
-        </>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            <PageHeaderComponent
+                title={"Profile"}
+                description={" Edit your profile details like name, photo, and personal preferences."}
+                buttons={[]}
+            />
+            <ProfileComponent/>
+        </div>
     );
 }
 
