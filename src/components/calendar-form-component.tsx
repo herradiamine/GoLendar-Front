@@ -26,7 +26,7 @@ export default function CalendarFormComponent() {
                 </div>
                 <div className="ml-3">
                     <h1 className="text-3xl font-bold">New calendar</h1>
-                    <p className="text-muted-foreground">Create a new calendar for events management</p>
+                    <p className="text-muted-foreground"> Create or edit a shared calendar with options for title, team members, availability, and color codes.</p>
                 </div>
             </div>
             <div className="grid grid-cols-1 mx-auto md:grid-cols-1 gap-4">

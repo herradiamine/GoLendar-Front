@@ -18,15 +18,15 @@ interface HeaderData {
 export default function PageHeaderComponent(data: HeaderData) {
     return (
         <div className="flex items-center justify-between">
-            <div>
+            <div className="m-1">
                 <h1 className="text-3xl font-bold">{data.title}</h1>
                 <p className="text-muted-foreground">{data.description}</p>
             </div>
-            <div className="flex grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+            <div className="flex-row grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
                 {data.buttons && data.buttons.map((button, index) => (
-                    <Button key={index} asChild>
+                    <Button className="mr-1 mb-1 w-35 justify-start" key={index} asChild>
                         <a href={button.link}>
-                            <button.icon className="h-4 w-4 mr-2 flex"/>
+                            <button.icon className="h-4 w-4"/>
                             {button.name}
                         </a>
                     </Button>

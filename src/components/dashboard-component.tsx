@@ -101,7 +101,7 @@ export default function DashboardComponent() {
                                 </a>
                             </Button>
                             <Button variant="outline" asChild className="h-20 flex-col bg-transparent">
-                                <a href="/settings/profil">
+                                <a href="/settings/profile">
                                     <Settings className="h-6 w-6 mb-2"/>
                                     Mon profil
                                 </a>

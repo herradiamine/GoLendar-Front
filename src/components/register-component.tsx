@@ -87,7 +87,7 @@ export default function RegisterComponent() {
                                     name="lastname"
                                     value={formData.lastname}
                                     onChange={handleChange}
-                                    placeholder="Dupont"
+                                    placeholder="John"
                                     required
                                 />
                             </div>
@@ -98,7 +98,7 @@ export default function RegisterComponent() {
                                     name="firstname"
                                     value={formData.firstname}
                                     onChange={handleChange}
-                                    placeholder="Jean"
+                                    placeholder="Doe"
                                     required
                                 />
                             </div>
@@ -112,7 +112,7 @@ export default function RegisterComponent() {
                                 type="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="jean.dupont@email.com"
+                                placeholder="john.doe@example.com"
                                 required
                             />
                         </div>
