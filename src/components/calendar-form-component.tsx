@@ -9,30 +9,22 @@ import {Textarea} from "@/components/ui/textarea";
 import * as React from "react";
 
 export default function CalendarFormComponent() {
-    const [formData, setFormData] = useState({
-        title: "",
-        description: ""
-    });
+    const [formData, setFormData] = useState({title: "", description: ""});
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
-    const handleSubmit = async (e: FormEvent) => {
-    }
-    const handleInputChange = async (e: FormEvent) => {
-    }
+    const handleSubmit = async (e: FormEvent) => {}
+    const handleInputChange = async (e: FormEvent) => {}
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="flex items-center justify-start">
                 <div className="flex grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-                    <Button variant="ghost" size="sm" asChild>
-                        <a href="/calendars">
-                            <ArrowLeft className="h-4 w-4 mr-1"/>
-                            Back
-                        </a>
+                    <Button variant="ghost" asChild>
+                        <a href="/calendars"><ArrowLeft className="h-4 w-4 mr-1"/>Back</a>
                     </Button>
                 </div>
-                <div>
+                <div className="ml-3">
                     <h1 className="text-3xl font-bold">New calendar</h1>
                     <p className="text-muted-foreground">Create a new calendar for events management</p>
                 </div>
@@ -45,8 +37,7 @@ export default function CalendarFormComponent() {
                 )}
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center"><Calendar className="h-5 w-5 mr-2"/>Calendar
-                            details</CardTitle>
+                        <CardTitle className="flex items-center"><Calendar className="h-5 w-5 mr-2"/>Calendar details</CardTitle>
                         <CardDescription>Fill your new calendar informations</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -99,10 +90,10 @@ export default function CalendarFormComponent() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="text-sm text-blue-700 space-y-2">
-                        <p>• Choisissez un nom descriptif pour identifier facilement votre calendrier</p>
-                        <p>• La description peut contenir des informations sur l'usage du calendrier</p>
-                        <p>• Vous pourrez inviter d'autres utilisateurs à collaborer sur ce calendrier</p>
-                        <p>• Vous aurez les droits d'administrateur sur ce calendrier</p>
+                        <p>• Choose a descriptive name to easily identify your calendar.</p>
+                        <p>• The description can include information about the calendar's purpose.</p>
+                        <p>• You will be able to invite other users to collaborate on this calendar.</p>
+                        <p>• You will have administrator rights on this calendar.</p>
                     </CardContent>
                 </Card>
             </div>
