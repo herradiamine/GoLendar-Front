@@ -10,11 +10,7 @@ function CalendarFormPage() {
             <FormHeaderComponent
                 title={"New calendar"}
                 description={"Create or edit a shared calendar with options for title, team members, availability, and color codes."}
-                button={{
-                    name: "Back",
-                    link: "/calendars",
-                    icon: ArrowLeft
-                }}
+                button={{name: "Back", link: "/calendars", icon: ArrowLeft}}
             />
             <CalendarFormComponent/>
         </div>
