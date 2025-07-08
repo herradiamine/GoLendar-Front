@@ -7,7 +7,7 @@ function AccountPage() {
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <PageHeaderComponent
                 title={"Account"}
-                description={" Manage your personal info, update your password, and configure account-specific settings."}
+                description={"Manage your personal info, update your password, and configure account-specific settings."}
                 buttons={[]}
             />
             <AccountComponent/>

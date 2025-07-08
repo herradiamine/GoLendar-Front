@@ -69,8 +69,8 @@ export function SidebarComponent({...props}: React.ComponentProps<typeof Sidebar
                         url: "/settings/account",
                     },
                     {
-                        title: "Profil",
-                        url: "/settings/profil",
+                        title: "Profile",
+                        url: "/settings/profile",
                     },
                     {
                         title: "General",

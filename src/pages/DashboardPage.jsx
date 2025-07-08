@@ -8,7 +8,7 @@ function DashboardPage() {
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <PageHeaderComponent
                 title={"Dashboard"}
-                description={"Welcome on GoLendar"}
+                description={"Get a quick overview of your upcoming events, team availability, and recent calendar activity."}
                 buttons={[
                     {
                         link: "/events/new",

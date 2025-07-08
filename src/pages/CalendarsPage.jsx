@@ -8,7 +8,7 @@ function CalendarsPage() {
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <PageHeaderComponent
                 title={"My calendars"}
-                description={"Manage calendars and organize events"}
+                description={"Browse all personal and team calendars. Quickly access or organize calendars by project or team."}
                 buttons={[
                     {
                         link: "/calendars/new",

@@ -11,7 +11,7 @@ const routeConfig = {
     '/calendars': {label: 'Calendars'},
     '/calendars/new': {label: 'New Calendar'},
     '/settings/account': {label: 'Account'},
-    '/settings/profil': {label: 'Profil'},
+    '/settings/profile': {label: 'Profile'},
     '/settings/general': {label: 'General'},
     '/settings/billing': {label: 'Billing'},
     '/settings/notifications': {label: 'Notifications'},

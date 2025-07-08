@@ -30,7 +30,7 @@ function App() {
                 <Route path="/calendars/new" element={<CalendarFormPage/>}/>
                 <Route path="/settings">
                     <Route path="account" element={<AccountPage/>}/>
-                    <Route path="profil" element={<ProfilePage/>}/>
+                    <Route path="profile" element={<ProfilePage/>}/>
                     <Route path="general" element={<GeneralPage/>}/>
                     <Route path="billing" element={<BillingPage/>}/>
                     <Route path="notifications" element={<NotificationPage/>}/>

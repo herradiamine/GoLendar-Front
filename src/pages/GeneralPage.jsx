@@ -6,7 +6,11 @@ function GeneralPage() {
     return (
         <>
             <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                <PageHeaderComponent title={"General"} description={"Adjust general app settings like language, timezone, theme, and default preferences."} buttons={[]}/>
+                <PageHeaderComponent
+                    title={"General"}
+                    description={"Configure global settings for the workspace, including default time zone, language, and display options."}
+                    buttons={[]}
+                />
                 <GeneralComponent/>
             </div>
         </>
