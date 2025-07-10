@@ -32,19 +32,19 @@ export function handleApiResponse(response: any): ApiResponse {
  */
 export function handleApiResponseError(error: AxiosError): ApiResponse {
     const api_error: AxiosError|any = (error?.response) ? error.response : null;
-    const api_error_response: AxiosResponse|any = (api_error?.response) ?? api_error.response;
+    const api_error_response: AxiosResponse|any = (api_error?.data) ?? api_error.data;
     // Cas où l'API a répondu avec un message d'erreur structuré
-    if (api_error && api_error.response?.data) {
+    if (api_error_response) {
         return {
             success: false,
-            data: api_error_response.data,
-            message: api_error_response.data.message || null,
-            error: api_error_response.data.error || 'Erreur API'
+            data: api_error_response?.data,
+            message: api_error_response?.message,
+            error: api_error_response?.error || 'Erreur API'
         };
-    }
+    }{
 
     // Cas d'erreur réseau ou autre erreur Axios
-    if (api_error?.message) {
+    if (api_error?.message)
         return {
             success: false,
             data: [],

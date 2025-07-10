@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { handleApiResponse, handleApiResponseError, ApiResponse } from '@/utils/apiResponse';
 
 // Configuration de base
-const BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:3000/api';
+const BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:8080/';
 
 // Création de l'instance Axios
 const apiClient = axios.create({
