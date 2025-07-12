@@ -120,11 +120,11 @@ export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
     data.user = response.success && response.data ? {
         name: response.data.firstname + ' ' + response.data.lastname || 'Utilisateur',
         email: response.data.email || 'user@example.com',
-        avatar: 'logo.svg',
+        avatar: '/logo.svg',
     } : {
         name: 'Utilisateur',
         email: 'user@example.com',
-        avatar: '',
+        avatar: '/logo.svg',
     };
 
     return (
