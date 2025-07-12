@@ -15,6 +15,7 @@ import {AppSidebar} from "@/components/app-sidebar";
 import {Separator} from "@/components/ui/separator";
 import NavBreadcrumb from "@/components/nav-breadcrumb";
 import "./globals.css";
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -75,6 +76,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
                     </ThemeProvider>
                 </body>
             </html>
+            <Toaster />
         </ReduxProvider>
     );
 }

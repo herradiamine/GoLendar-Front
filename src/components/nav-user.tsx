@@ -2,7 +2,7 @@
 
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { logoutUser } from '@/store/userSlice';
+import { clearProfile, logoutUser } from '@/store/userSlice';
 import type { AppDispatch } from '@/store/index';
 import {
   BadgeCheck,
@@ -33,6 +33,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { toast } from 'sonner';
+import { ApiResponse } from '@/utils/apiResponse';
 
 export function NavUser({
   user,
@@ -48,7 +50,10 @@ export function NavUser({
   const router = useRouter();
 
   const handleLogout = async () => {
-    await dispatch(logoutUser());
+    dispatch(clearProfile());
+    const response = await dispatch(logoutUser());
+    const apiResponse = response.payload as ApiResponse;
+    toast(apiResponse.data.message);
     router.push('/login');
   };
 

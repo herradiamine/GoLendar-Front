@@ -163,9 +163,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   
   // Utiliser les données utilisateur du store ou des données par défaut
   const userData = response.success && response.data ? {
-    name: response.data.name || 'Utilisateur',
+    name: response.data.firstname + ' ' + response.data.lastname || 'Utilisateur',
     email: response.data.email || 'user@example.com',
-    avatar: response.data.avatar || '',
+    avatar: 'logo.svg',
   } : {
     name: 'Utilisateur',
     email: 'user@example.com',

@@ -18,6 +18,7 @@ import {ApiResponse} from "@/utils/apiResponse";
 import {Alert, AlertDescription} from "@/components/ui/alert";
 import {Eye, EyeOff, LucideLoaderCircle} from "lucide-react";
 import {useRouter} from 'next/navigation';
+import { ModeToggle } from "./theme-toggle";
 
 export function LoginForm({className, ...props}: React.ComponentProps<"div">) {
     const router = useRouter();
@@ -64,6 +65,7 @@ export function LoginForm({className, ...props}: React.ComponentProps<"div">) {
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
                 <CardHeader className="text-center">
+                    <ModeToggle/>
                     <CardTitle className="text-xl">Welcome back</CardTitle>
                     <CardDescription>
                         Login with your Apple or Google account

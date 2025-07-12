@@ -58,16 +58,20 @@ const userSlice = createSlice({
                 state.response = {} as ApiResponse;
                 state.error = action.payload as ApiResponse || {} as ApiResponse;
             })
+            
             .addCase(logoutUser.pending, (state) => {
                 state.status = 'loading';
-            })
-            .addCase(logoutUser.fulfilled, (state) => {
-                state.status = 'idle';
                 state.response = {} as ApiResponse;
+                state.error = {} as ApiResponse;
+            })
+            .addCase(logoutUser.fulfilled, (state, action: PayloadAction<ApiResponse>) => {
+                state.status = 'idle';
+                state.response = action.payload as ApiResponse;
                 state.error = {} as ApiResponse;
             })
             .addCase(logoutUser.rejected, (state, action) => {
                 state.status = 'failed';
+                state.response = {} as ApiResponse;
                 state.error = action.payload as ApiResponse || {} as ApiResponse;
             });
     },
