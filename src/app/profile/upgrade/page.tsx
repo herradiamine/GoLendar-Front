@@ -4,7 +4,7 @@ export default function Page() {
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <PageHeaderComponent
-                title={"Profile"}
+                title={"Upgrade"}
                 description={"Update your name, photo, working hours, and preferences used across shared team calendars."}
                 buttons={[]}
             />

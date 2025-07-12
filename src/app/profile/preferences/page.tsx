@@ -4,8 +4,8 @@ export default function Page() {
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
             <PageHeaderComponent
-                title={"Profile"}
-                description={" Edit your profile details like name, photo, and personal preferences."}
+                title={"Preferences"}
+                description={" Edit your preferences details like animations, appearance, and other preferences."}
                 buttons={[]}
             />
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">

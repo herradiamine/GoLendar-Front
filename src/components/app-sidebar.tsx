@@ -2,15 +2,15 @@
 
 import * as React from "react"
 import {useSelector} from 'react-redux';
-import type {RootState} from '@/store/index';
+import type {RootState} from '@/store';
 import {
+    Activity,
     AudioWaveform,
     Calendar,
     Command,
     GalleryVerticalEnd,
     Home,
     Settings2,
-    ShieldCheck,
 } from "lucide-react"
 
 import {NavMain} from "@/components/nav-main"
@@ -23,7 +23,6 @@ import {
     SidebarFooter,
     SidebarHeader,
     SidebarRail,
-
 } from "@/components/ui/sidebar"
 
 // This is sample data.
@@ -79,11 +78,11 @@ const data = {
         {
             title: "Sessions",
             url: "/sessions",
-            icon: ShieldCheck
+            icon: Activity
         },
         {
             title: "Profile",
-            url: "#",
+            url: "/profile",
             icon: Settings2,
             isActive: true,
             items: [
@@ -94,6 +93,10 @@ const data = {
                 {
                     title: "Security",
                     url: "/profile/security",
+                },
+                {
+                    title: "Preferences",
+                    url: "/profile/preferences",
                 },
                 {
                     title: "Billing",

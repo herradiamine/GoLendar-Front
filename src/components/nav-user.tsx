@@ -3,14 +3,16 @@
 import {useDispatch} from 'react-redux';
 import {useRouter} from 'next/navigation';
 import {clearProfile, logoutUser} from '@/store/userSlice';
-import type {AppDispatch} from '@/store/index';
+import type {AppDispatch} from '@/store';
 import {
-    BadgeCheck,
     Bell,
     ChevronsUpDown,
     CreditCard,
     LogOut,
+    Settings,
+    Shield,
     Sparkles,
+    User,
 } from "lucide-react"
 
 import {
@@ -36,9 +38,7 @@ import {
 import {toast} from 'sonner';
 import {ApiResponse} from '@/utils/apiResponse';
 
-export function NavUser({
-                            user,
-                        }: {
+export function NavUser({user}: {
     user: {
         name: string
         email: string
@@ -98,7 +98,9 @@ export function NavUser({
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator/>
                         <DropdownMenuGroup>
-                            <a href='/profile/account'><DropdownMenuItem><BadgeCheck/>Account</DropdownMenuItem></a>
+                            <a href='/profile/general'><DropdownMenuItem><User/>General</DropdownMenuItem></a>
+                            <a href='/profile/security'><DropdownMenuItem><Shield/>Security</DropdownMenuItem></a>
+                            <a href='/profile/preferences'><DropdownMenuItem><Settings/>Preferences</DropdownMenuItem></a>
                             <a href='/profile/billing'><DropdownMenuItem><CreditCard/>Billing</DropdownMenuItem></a>
                             <a href='/profile/notifications'><DropdownMenuItem><Bell/>Notifications</DropdownMenuItem></a>
                         </DropdownMenuGroup>
