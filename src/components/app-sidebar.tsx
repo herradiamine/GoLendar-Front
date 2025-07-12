@@ -1,190 +1,145 @@
 "use client"
 
 import * as React from "react"
-import { useSelector } from 'react-redux';
-import type { RootState } from '@/store/index';
+import {useSelector} from 'react-redux';
+import type {RootState} from '@/store/index';
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
+    AudioWaveform,
+    Calendar,
+    Command,
+    GalleryVerticalEnd,
+    Home,
+    Settings2,
+    ShieldCheck,
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import {NavMain} from "@/components/nav-main"
+import {NavProjects} from "@/components/nav-projects"
+import {NavUser} from "@/components/nav-user"
+import {TeamSwitcher} from "@/components/team-switcher"
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarHeader,
+    SidebarRail,
+
 } from "@/components/ui/sidebar"
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Tech Team",
-      logo: GalleryVerticalEnd,
-      plan: "Tech planing",
+    user: {
+        name: "shadcn",
+        email: "m@example.com",
+        avatar: "/avatars/shadcn.jpg",
     },
-    {
-      name: "Support team",
-      logo: AudioWaveform,
-      plan: "Support team planing",
-    },
-    {
-      name: "Marketing team",
-      logo: Command,
-      plan: "Marketing team planing",
-    },
-  ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
+    teams: [
         {
-          title: "History",
-          url: "#",
+            name: "Tech Team",
+            logo: GalleryVerticalEnd,
+            plan: "Tech planing",
         },
         {
-          title: "Starred",
-          url: "#",
+            name: "Support team",
+            logo: AudioWaveform,
+            plan: "Support team planing",
         },
         {
-          title: "Settings",
-          url: "#",
+            name: "Marketing team",
+            logo: Command,
+            plan: "Marketing team planing",
         },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
+    ],
+    navMain: [
         {
-          title: "Genesis",
-          url: "#",
+            title: "Dashboard",
+            url: "/dashboard",
+            icon: Home,
         },
         {
-          title: "Explorer",
-          url: "#",
+            title: "Calendars",
+            url: "/calendars",
+            icon: Calendar,
+            isActive: true,
+            items: [
+                {
+                    title: "Family planing",
+                    url: "#",
+                },
+                {
+                    title: "Professional planing",
+                    url: "#",
+                },
+                {
+                    title: "Personal planing",
+                    url: "#",
+                },
+            ],
         },
         {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
+            title: "Sessions",
+            url: "/sessions",
+            icon: ShieldCheck
         },
         {
-          title: "Get Started",
-          url: "#",
+            title: "Settings",
+            url: "#",
+            icon: Settings2,
+            isActive: true,
+            items: [
+                {
+                    title: "Account",
+                    url: "/settings/account",
+                },
+                {
+                    title: "Profile",
+                    url: "/settings/profile",
+                },
+                {
+                    title: "General",
+                    url: "/settings/general",
+                },
+                {
+                    title: "Billing",
+                    url: "/settings/billing",
+                },
+                {
+                    title: "Notifications",
+                    url: "/settings/notifications",
+                },
+            ],
         },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+    ],
+    projects: null,
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { response } = useSelector((state: RootState) => state.user);
-  
-  // Utiliser les données utilisateur du store ou des données par défaut
-  const userData = response.success && response.data ? {
-    name: response.data.firstname + ' ' + response.data.lastname || 'Utilisateur',
-    email: response.data.email || 'user@example.com',
-    avatar: 'logo.svg',
-  } : {
-    name: 'Utilisateur',
-    email: 'user@example.com',
-    avatar: '',
-  };
+export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+    const {response} = useSelector((state: RootState) => state.user);
 
-  return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={userData} />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
-  )
+    // Utiliser les données utilisateur du store ou des données par défaut
+    data.user = response.success && response.data ? {
+        name: response.data.firstname + ' ' + response.data.lastname || 'Utilisateur',
+        email: response.data.email || 'user@example.com',
+        avatar: 'logo.svg',
+    } : {
+        name: 'Utilisateur',
+        email: 'user@example.com',
+        avatar: '',
+    };
+
+    return (
+        <Sidebar collapsible="icon" {...props}>
+            <SidebarHeader>
+                <TeamSwitcher teams={data.teams}/>
+            </SidebarHeader>
+            <SidebarContent>
+                <NavMain items={data.navMain}/>
+                {data.projects && <NavProjects projects={data.projects}/>}
+            </SidebarContent>
+            <SidebarFooter>
+                <NavUser user={data.user}/>
+            </SidebarFooter>
+            <SidebarRail/>
+        </Sidebar>
+    )
 }
