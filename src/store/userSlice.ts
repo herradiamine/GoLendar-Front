@@ -1,11 +1,12 @@
 import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
-import {getProfile} from '../services/auth';
+import {getProfile} from '@/services/auth';
+import {ApiResponse} from "@/utils/apiResponse";
 
 // Types pour l'état utilisateur
 interface UserState {
-    response: any;
+    response: ApiResponse;
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error: any;
+    error: ApiResponse;
 }
 
 // Thunk pour récupérer le profil utilisateur
@@ -17,9 +18,9 @@ export const fetchUserProfile = createAsyncThunk(
 );
 
 const initialState: UserState = {
-    response: null,
+    response: {} as ApiResponse,
     status: 'idle',
-    error: null,
+    error: {} as ApiResponse,
 };
 
 const userSlice = createSlice({
@@ -27,30 +28,30 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         clearProfile: (state) => {
-            state.response = null;
+            state.response = {} as ApiResponse;
             state.status = 'idle';
-            state.error = null;
+            state.error = {} as ApiResponse;
         },
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchUserProfile.pending, (state) => {
                 state.status = 'loading';
-                state.response = null;
-                state.error = null;
+                state.response = {} as ApiResponse;
+                state.error = {} as ApiResponse;
             })
-            .addCase(fetchUserProfile.fulfilled, (state, action: PayloadAction<any>) => {
+            .addCase(fetchUserProfile.fulfilled, (state, action: PayloadAction<ApiResponse>) => {
                 state.status = 'succeeded';
                 state.response = action.payload;
-                state.error = null;
+                state.error = {} as ApiResponse;
             })
             .addCase(fetchUserProfile.rejected, (state, action) => {
                 state.status = 'failed';
-                state.response = null;
-                state.error = action.payload;
+                state.response = {} as ApiResponse;
+                state.error = action.payload as ApiResponse || {} as ApiResponse;
             });
     },
 });
 
 export const {clearProfile} = userSlice.actions;
-export default userSlice.reducer; 
+export default userSlice.reducer;
