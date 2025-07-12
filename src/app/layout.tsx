@@ -1,16 +1,12 @@
 "use client"
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import {usePathname} from 'next/navigation';
+import {Geist, Geist_Mono} from "next/font/google";
 import ReduxProvider from '@/store/provider';
 import SessionGuard from '@/components/session-guard';
-import {Geist, Geist_Mono} from "next/font/google";
 import {ThemeProvider} from "@/components/theme-provider";
-import {
-    SidebarInset,
-    SidebarProvider,
-    SidebarTrigger
-} from '@/components/ui/sidebar';
+import {SidebarInset, SidebarProvider, SidebarTrigger} from '@/components/ui/sidebar';
 import {AppSidebar} from "@/components/app-sidebar";
 import {Separator} from "@/components/ui/separator";
 import NavBreadcrumb from "@/components/nav-breadcrumb";
