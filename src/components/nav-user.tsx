@@ -53,7 +53,7 @@ export function NavUser({
     dispatch(clearProfile());
     const response = await dispatch(logoutUser());
     const apiResponse = response.payload as ApiResponse;
-    toast(apiResponse.data.message);
+    toast(apiResponse.message);
     router.push('/login');
   };
 

@@ -43,6 +43,7 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            // Gestion du login avec son état
             .addCase(fetchUserProfile.pending, (state) => {
                 state.status = 'loading';
                 state.response = {} as ApiResponse;
@@ -58,7 +59,7 @@ const userSlice = createSlice({
                 state.response = {} as ApiResponse;
                 state.error = action.payload as ApiResponse || {} as ApiResponse;
             })
-            
+            // Gestion du logout avec son état
             .addCase(logoutUser.pending, (state) => {
                 state.status = 'loading';
                 state.response = {} as ApiResponse;
