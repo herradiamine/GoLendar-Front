@@ -17,8 +17,10 @@ import {login} from "@/services/auth"
 import {ApiResponse} from "@/utils/apiResponse";
 import {Alert, AlertDescription} from "@/components/ui/alert";
 import {Eye, EyeOff, LucideLoaderCircle} from "lucide-react";
+import {useRouter} from 'next/navigation';
 
 export function LoginForm({className, ...props}: React.ComponentProps<"div">) {
+    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -46,7 +48,7 @@ export function LoginForm({className, ...props}: React.ComponentProps<"div">) {
                 // Préparer le message toast pour signifier que la connexion est réussie
                 toast(response.message);
                 // Rediriger vers le dashboard
-                // window.location.href = "/dashboard";
+                router.push("/dashboard");
             } else {
                 setError(response.error ?? "");
                 setMessage("");

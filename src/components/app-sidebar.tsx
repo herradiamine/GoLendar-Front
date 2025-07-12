@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store/index';
 import {
   AudioWaveform,
   BookOpen,
@@ -157,6 +159,19 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { response } = useSelector((state: RootState) => state.user);
+  
+  // Utiliser les données utilisateur du store ou des données par défaut
+  const userData = response.success && response.data ? {
+    name: response.data.name || 'Utilisateur',
+    email: response.data.email || 'user@example.com',
+    avatar: response.data.avatar || '',
+  } : {
+    name: 'Utilisateur',
+    email: 'user@example.com',
+    avatar: '',
+  };
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -167,7 +182,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

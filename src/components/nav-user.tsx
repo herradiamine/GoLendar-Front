@@ -1,5 +1,9 @@
 "use client"
 
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { logoutUser } from '@/store/userSlice';
+import type { AppDispatch } from '@/store/index';
 import {
   BadgeCheck,
   Bell,
@@ -40,6 +44,13 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await dispatch(logoutUser());
+    router.push('/login');
+  };
 
   return (
     <SidebarMenu>
@@ -102,7 +113,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
               Log out
             </DropdownMenuItem>

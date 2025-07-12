@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
-import {getProfile} from '@/services/auth';
+import {getProfile, logout} from '@/services/auth';
 import {ApiResponse} from "@/utils/apiResponse";
 
 // Types pour l'état utilisateur
@@ -14,6 +14,14 @@ export const fetchUserProfile = createAsyncThunk(
     'user/fetchUserProfile',
     async () => {
         return await getProfile();
+    }
+);
+
+// Thunk pour la déconnexion
+export const logoutUser = createAsyncThunk(
+    'user/logoutUser',
+    async () => {
+        return await logout();
     }
 );
 
@@ -48,6 +56,18 @@ const userSlice = createSlice({
             .addCase(fetchUserProfile.rejected, (state, action) => {
                 state.status = 'failed';
                 state.response = {} as ApiResponse;
+                state.error = action.payload as ApiResponse || {} as ApiResponse;
+            })
+            .addCase(logoutUser.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.status = 'idle';
+                state.response = {} as ApiResponse;
+                state.error = {} as ApiResponse;
+            })
+            .addCase(logoutUser.rejected, (state, action) => {
+                state.status = 'failed';
                 state.error = action.payload as ApiResponse || {} as ApiResponse;
             });
     },

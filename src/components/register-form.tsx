@@ -14,11 +14,13 @@ import {
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 import {Eye, EyeOff, LucideLoaderCircle} from "lucide-react";
+import {useRouter} from 'next/navigation';
 import {registerUser} from "@/services/user";
 import {ApiResponse} from "@/utils/apiResponse";
 import {Alert, AlertDescription} from "@/components/ui/alert";
 
 export function RegisterForm({className, ...props}: React.ComponentProps<"div">) {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         lastname: "",
         firstname: "",
@@ -48,7 +50,7 @@ export function RegisterForm({className, ...props}: React.ComponentProps<"div">)
             const data: ApiResponse = await registerUser(formData);
             if (data.success) {
                 setMessage(data.message ?? "");
-                window.location.href = "/login";
+                router.push("/login");
             } else {
                 setError(data.error ?? "");
             }
