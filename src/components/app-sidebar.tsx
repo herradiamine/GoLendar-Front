@@ -82,30 +82,26 @@ const data = {
             icon: ShieldCheck
         },
         {
-            title: "Settings",
+            title: "Profile",
             url: "#",
             icon: Settings2,
             isActive: true,
             items: [
                 {
-                    title: "Account",
-                    url: "/settings/account",
-                },
-                {
-                    title: "Profile",
-                    url: "/settings/profile",
-                },
-                {
                     title: "General",
-                    url: "/settings/general",
+                    url: "/profile/general",
+                },
+                {
+                    title: "Security",
+                    url: "/profile/security",
                 },
                 {
                     title: "Billing",
-                    url: "/settings/billing",
+                    url: "/profile/billing",
                 },
                 {
                     title: "Notifications",
-                    url: "/settings/notifications",
+                    url: "/profile/notifications",
                 },
             ],
         },
